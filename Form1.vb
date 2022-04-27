@@ -3,8 +3,12 @@ Public Class Form1
 
 
     Dim Countdown As Integer = 60
+    Dim nbMines = 10
+    Dim ColumnsCount As Integer = 8
+    Dim LinesCount As Integer = 8
     Dim XmlSettings As XmlDocument = New XmlDocument()
     Dim GamersList As List(Of String) = New List(Of String)
+    Dim TabMineCells As New Hashtable
 
     Public Sub Trace(TheTrace As String)
 
@@ -39,7 +43,7 @@ Public Class Form1
     End Sub
 
 
-    Private Sub GenerateGrid(ColumnsCount As Integer, LinesCount As Integer)
+    Private Sub GenerateGrid()
 
         Dim GridWidth = ColumnsCount * MineCell.MineCellWidth
         Dim GridHeight = LinesCount * MineCell.MineCellHeight
@@ -49,21 +53,155 @@ Public Class Form1
 
         Dim index As Integer = 0
 
+
         For LineIndex As Integer = 0 To LinesCount - 1
             For ColumnIndex As Integer = 0 To ColumnsCount - 1
-
-                Dim result As Integer = index Mod 12
-                Grid.Controls.Add(New MineCell(ImageListPictures, result, ColumnIndex, LineIndex))
+                TabMineCells.Add(New Point(ColumnIndex, LineIndex), New MineCell(ImageListPictures, 9, ColumnIndex, LineIndex))
                 index += 1
-
             Next
+        Next
+
+        For i As Integer = 0 To nbMines - 1
+
+            While (True)
+                Randomize()
+                Dim valueX As Integer = CInt(Int((ColumnsCount * Rnd()) + 1))
+                Dim valueY As Integer = CInt(Int((ColumnsCount * Rnd()) + 1))
+                Dim point As New Point(valueX Mod ColumnsCount, valueY Mod LinesCount)
+                Dim cellMine As MineCell = TabMineCells.Item(point)
+                If cellMine.getCellValue <> MineCell.MineStates.BombCell Then
+                    cellMine.isMine()
+                    setVoisins(cellMine)
+                    Exit While
+                End If
+            End While
+        Next
+
+        For Each cell As MineCell In TabMineCells.Values
+            Grid.Controls.Add(cell)
         Next
 
     End Sub
 
+    Private Sub setVoisins(cell As MineCell)
+        Dim point As Point = cell.getPoint
+        Dim x As Integer = point.X
+        Dim y As Integer = point.Y
+        Dim MineTmp As MineCell
+        If x <> 0 Then
+            MineTmp = TabMineCells.Item(New Point(x - 1, y))
+            MineTmp.addVoisin()
+        End If
+        If x <> ColumnsCount - 1 Then
+            MineTmp = TabMineCells.Item(New Point(x + 1, y))
+            MineTmp.addVoisin()
+        End If
+        If y <> 0 Then
+            MineTmp = TabMineCells.Item(New Point(x, y - 1))
+            MineTmp.addVoisin()
+        End If
+        If y <> LinesCount - 1 Then
+            MineTmp = TabMineCells.Item(New Point(x, y + 1))
+            MineTmp.addVoisin()
+        End If
+        If x <> 0 And y <> 0 Then
+            MineTmp = TabMineCells.Item(New Point(x - 1, y - 1))
+            MineTmp.addVoisin()
+        End If
+        If x <> 0 And y <> LinesCount - 1 Then
+            MineTmp = TabMineCells.Item(New Point(x - 1, y + 1))
+            MineTmp.addVoisin()
+        End If
+        If x <> ColumnsCount - 1 And y <> 0 Then
+            MineTmp = TabMineCells.Item(New Point(x + 1, y - 1))
+            MineTmp.addVoisin()
+        End If
+        If x <> ColumnsCount - 1 And y <> LinesCount - 1 Then
+            MineTmp = TabMineCells.Item(New Point(x + 1, y + 1))
+            MineTmp.addVoisin()
+        End If
+    End Sub
 
+    Public Sub decouvrir(cell As MineCell)
+        Dim point As Point = cell.getPoint
+        Dim x As Integer = point.X
+        Dim y As Integer = point.Y
+        Dim MineTmp As MineCell
+        If x <> 0 Then
+            MineTmp = TabMineCells.Item(New Point(x - 1, y))
+            If MineTmp.getCellValue < MineCell.MineStates.BeginCell And Not MineTmp.isDiscovered Then
+                MineTmp.decovery()
+                If MineTmp.getCellValue = MineCell.MineStates.DefaultCellDiscovered Then
+                    decouvrir(MineTmp)
+                End If
+            End If
+        End If
+        If x <> ColumnsCount - 1 Then
+            MineTmp = TabMineCells.Item(New Point(x + 1, y))
+            If MineTmp.getCellValue < MineCell.MineStates.BeginCell And Not MineTmp.isDiscovered Then
+                MineTmp.decovery()
+                If MineTmp.getCellValue = MineCell.MineStates.DefaultCellDiscovered Then
+                    decouvrir(MineTmp)
+                End If
+            End If
+        End If
+        If y <> 0 Then
+            MineTmp = TabMineCells.Item(New Point(x, y - 1))
+            If MineTmp.getCellValue < MineCell.MineStates.BeginCell And Not MineTmp.isDiscovered Then
+                MineTmp.decovery()
+                If MineTmp.getCellValue = MineCell.MineStates.DefaultCellDiscovered Then
+                    decouvrir(MineTmp)
+                End If
+            End If
+        End If
+        If y <> LinesCount - 1 Then
+            MineTmp = TabMineCells.Item(New Point(x, y + 1))
+            If MineTmp.getCellValue < MineCell.MineStates.BeginCell And Not MineTmp.isDiscovered Then
+                MineTmp.decovery()
+                If MineTmp.getCellValue = MineCell.MineStates.DefaultCellDiscovered Then
+                    decouvrir(MineTmp)
+                End If
+            End If
+        End If
+        If x <> 0 And y <> 0 Then
+            MineTmp = TabMineCells.Item(New Point(x - 1, y - 1))
+            If MineTmp.getCellValue < MineCell.MineStates.BeginCell And Not MineTmp.isDiscovered Then
+                MineTmp.decovery()
+                If MineTmp.getCellValue = MineCell.MineStates.DefaultCellDiscovered Then
+                    decouvrir(MineTmp)
+                End If
+            End If
+        End If
+        If x <> 0 And y <> LinesCount - 1 Then
+            MineTmp = TabMineCells.Item(New Point(x - 1, y + 1))
+            If MineTmp.getCellValue < MineCell.MineStates.BeginCell And Not MineTmp.isDiscovered Then
+                MineTmp.decovery()
+                If MineTmp.getCellValue = MineCell.MineStates.DefaultCellDiscovered Then
+                    decouvrir(MineTmp)
+                End If
+            End If
+        End If
+        If x <> ColumnsCount - 1 And y <> 0 Then
+            MineTmp = TabMineCells.Item(New Point(x + 1, y - 1))
+            If MineTmp.getCellValue < MineCell.MineStates.BeginCell And Not MineTmp.isDiscovered Then
+                MineTmp.decovery()
+                If MineTmp.getCellValue = MineCell.MineStates.DefaultCellDiscovered Then
+                    decouvrir(MineTmp)
+                End If
+            End If
+        End If
+        If x <> ColumnsCount - 1 And y <> LinesCount - 1 Then
+            MineTmp = TabMineCells.Item(New Point(x + 1, y + 1))
+            If MineTmp.getCellValue < MineCell.MineStates.BeginCell And Not MineTmp.isDiscovered Then
+                MineTmp.decovery()
+                If MineTmp.getCellValue = MineCell.MineStates.DefaultCellDiscovered Then
+                    decouvrir(MineTmp)
+                End If
+            End If
+        End If
+    End Sub
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
+        Trace("load form1")
         Try
 
             XmlSettings.Load(Application.StartupPath & "\Demineur.xml")
@@ -100,8 +238,9 @@ Public Class Form1
         Next
 
         GenerateCountdown(3)
-            GenerateGrid(12, 12)
+        GenerateGrid()
         TextBoxTrace.Visible = ToolStripMenuItemTrace.Checked
+        Trace("load form1 finish")
     End Sub
 
     Private Sub ToolStripMenuItemTrace_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItemTrace.Click
@@ -118,19 +257,22 @@ Public Class Form1
     End Sub
 
     Private Sub ButtonStart_Click(sender As Object, e As EventArgs) Handles ButtonStart.Click
+        Trace("Start timer")
         TimerGame.Start()
     End Sub
 
     Private Sub TimerGame_Tick(sender As Object, e As EventArgs) Handles TimerGame.Tick
 
         If (Countdown > 0) Then
+            If Countdown = 1 Then
+                Trace("End Timer")
+            End If
             Countdown -= 1
         Else
             TimerGame.Enabled = False
         End If
 
         CountdownSetImage(Countdown)
-        Trace(Countdown)
 
     End Sub
 
@@ -162,7 +304,7 @@ Public Class Form1
             panelindex.setNumber(result)
             calcul -= result * power
 
-            power = power / 10
+            power /= 10
 
         Next
     End Sub
@@ -202,7 +344,12 @@ Public Class Form1
             Trace("Impossible to write xml file")
 
         End Try
+        Trace("form1 closing")
 
+    End Sub
+
+    Private Sub Form1_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        Trace("form1 closed")
     End Sub
 
     Private Sub ComboBox1_Validated(sender As Object, e As EventArgs) Handles ComboBox1.Validated
@@ -222,6 +369,7 @@ Public Class Form1
             GamersList.Add(newgamer)
             ComboBox1.Items.Add(newgamer)
         End If
-
+        Trace("The gamer is : " & newgamer)
     End Sub
+
 End Class
