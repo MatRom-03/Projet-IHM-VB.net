@@ -3,10 +3,6 @@
 
     Public Const MineCellWidth As Integer = 16
     Public Const MineCellHeight As Integer = 16
-    'Public Const DefaultCellDiscovered As Integer = 0
-    'Public Const FlagImageCell As Integer = 10
-    'Public Const BombCell As Integer = 11
-
 
     Public Enum MineStates
 
@@ -38,12 +34,17 @@
         MyBase.OnMouseClick(e)
 
         If e.Button = MouseButtons.Right And Not decouvert Then
-            Form1.Trace("Clic droit (" & PosX & "," & PosY & ")")
+            Game.Trace("Clic droit (" & PosX & "," & PosY & ")")
             Me.BackgroundImage = Me.ImageListPictures.Images(MineStates.FlagImageCell)
         ElseIf e.Button = MouseButtons.Left And Not decouvert Then
-            Form1.Trace("Clic gauche (" & PosX & "," & PosY & ")")
+            Game.Trace("Clic gauche (" & PosX & "," & PosY & ")")
             decovery()
-            Form1.decouvrir(Me)
+            If value = MineStates.DefaultCellDiscovered Then
+                Game.Discover(Me)
+            End If
+            If value = MineStates.BombCell Then
+                Game.GameOver()
+            End If
         End If
 
     End Sub

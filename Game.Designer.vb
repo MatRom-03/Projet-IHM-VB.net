@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class Form1
+Partial Class Game
     Inherits System.Windows.Forms.Form
 
     'Form remplace la méthode Dispose pour nettoyer la liste des composants.
@@ -23,11 +23,12 @@ Partial Class Form1
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Game))
         Me.Grid = New System.Windows.Forms.Panel()
         Me.ImageListPictures = New System.Windows.Forms.ImageList(Me.components)
         Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
+        Me.labelName = New System.Windows.Forms.Label()
+        Me.LabelGamerName = New System.Windows.Forms.Label()
         Me.PanelCountdown = New System.Windows.Forms.Panel()
         Me.ButtonStart = New System.Windows.Forms.Button()
         Me.TextBoxTrace = New System.Windows.Forms.TextBox()
@@ -45,7 +46,7 @@ Partial Class Form1
         Me.Grid.BackColor = System.Drawing.SystemColors.Window
         Me.Grid.Location = New System.Drawing.Point(53, 137)
         Me.Grid.Name = "Grid"
-        Me.Grid.Size = New System.Drawing.Size(319, 181)
+        Me.Grid.Size = New System.Drawing.Size(186, 158)
         Me.Grid.TabIndex = 1
         '
         'ImageListPictures
@@ -67,7 +68,8 @@ Partial Class Form1
         '
         'Panel1
         '
-        Me.Panel1.Controls.Add(Me.ComboBox1)
+        Me.Panel1.Controls.Add(Me.labelName)
+        Me.Panel1.Controls.Add(Me.LabelGamerName)
         Me.Panel1.Controls.Add(Me.PanelCountdown)
         Me.Panel1.Controls.Add(Me.ButtonStart)
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Top
@@ -76,13 +78,23 @@ Partial Class Form1
         Me.Panel1.Size = New System.Drawing.Size(444, 72)
         Me.Panel1.TabIndex = 2
         '
-        'ComboBox1
+        'labelName
         '
-        Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Location = New System.Drawing.Point(92, 27)
-        Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(121, 21)
-        Me.ComboBox1.TabIndex = 6
+        Me.labelName.AutoSize = True
+        Me.labelName.Location = New System.Drawing.Point(113, 35)
+        Me.labelName.Name = "labelName"
+        Me.labelName.Size = New System.Drawing.Size(82, 13)
+        Me.labelName.TabIndex = 8
+        Me.labelName.Text = "Nom du joueur :"
+        '
+        'LabelGamerName
+        '
+        Me.LabelGamerName.AutoSize = True
+        Me.LabelGamerName.Location = New System.Drawing.Point(212, 35)
+        Me.LabelGamerName.Name = "LabelGamerName"
+        Me.LabelGamerName.Size = New System.Drawing.Size(39, 13)
+        Me.LabelGamerName.TabIndex = 7
+        Me.LabelGamerName.Text = "Label1"
         '
         'PanelCountdown
         '
@@ -94,18 +106,18 @@ Partial Class Form1
         '
         'ButtonStart
         '
-        Me.ButtonStart.Location = New System.Drawing.Point(219, 25)
+        Me.ButtonStart.Location = New System.Drawing.Point(284, 30)
         Me.ButtonStart.Name = "ButtonStart"
         Me.ButtonStart.Size = New System.Drawing.Size(75, 23)
         Me.ButtonStart.TabIndex = 3
-        Me.ButtonStart.Text = "ButtonStart"
+        Me.ButtonStart.Text = "Start"
         Me.ButtonStart.UseVisualStyleBackColor = True
         '
         'TextBoxTrace
         '
         Me.TextBoxTrace.BackColor = System.Drawing.SystemColors.AppWorkspace
         Me.TextBoxTrace.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.TextBoxTrace.Location = New System.Drawing.Point(0, 366)
+        Me.TextBoxTrace.Location = New System.Drawing.Point(0, 331)
         Me.TextBoxTrace.Multiline = True
         Me.TextBoxTrace.Name = "TextBoxTrace"
         Me.TextBoxTrace.ReadOnly = True
@@ -154,20 +166,21 @@ Partial Class Form1
         Me.ImageListCountdown.Images.SetKeyName(8, "Countdown 8.png")
         Me.ImageListCountdown.Images.SetKeyName(9, "Countdown 9.png")
         '
-        'Form1
+        'Game
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.AppWorkspace
-        Me.ClientSize = New System.Drawing.Size(444, 450)
+        Me.ClientSize = New System.Drawing.Size(444, 415)
         Me.Controls.Add(Me.TextBoxTrace)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.Grid)
         Me.Controls.Add(Me.MenuStrip1)
         Me.MainMenuStrip = Me.MenuStrip1
-        Me.Name = "Form1"
-        Me.Text = "Form1"
+        Me.Name = "Game"
+        Me.Text = "Minesweeper"
         Me.Panel1.ResumeLayout(False)
+        Me.Panel1.PerformLayout()
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
         Me.ResumeLayout(False)
@@ -186,5 +199,6 @@ Partial Class Form1
     Friend WithEvents TimerGame As Timer
     Friend WithEvents ImageListCountdown As ImageList
     Friend WithEvents PanelCountdown As Panel
-    Friend WithEvents ComboBox1 As ComboBox
+    Friend WithEvents LabelGamerName As Label
+    Friend WithEvents labelName As Label
 End Class

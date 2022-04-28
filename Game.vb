@@ -1,27 +1,14 @@
-﻿Imports System.Xml
-Public Class Form1
+﻿Public Class Game
 
-
-    Dim Countdown As Integer = 60
+    Dim GameTime As Integer = 60
+    Dim Countdown As Integer = GameTime
     Dim nbMines = 10
     Dim ColumnsCount As Integer = 8
     Dim LinesCount As Integer = 8
-    Dim XmlSettings As XmlDocument = New XmlDocument()
-    Dim GamersList As List(Of String) = New List(Of String)
     Dim TabMineCells As New Hashtable
 
     Public Sub Trace(TheTrace As String)
-
-        Dim TraceDate As Date = Date.Now
-        Dim trace As String
-        Dim file As IO.StreamWriter = FileIO.FileSystem.OpenTextFileWriter(Application.StartupPath & "\Demineur.txt", True)
-
-        trace = TraceDate.ToShortDateString & " - " & TraceDate.ToLongTimeString & " : "
-        trace += TheTrace
-
-        file.WriteLine(trace)
-        file.Close()
-
+        Dim trace As String = GameLuncher.TraceFile(TheTrace)
         If (Not ToolStripMenuItemTrace.Checked) Then
             Return
         End If
@@ -122,7 +109,7 @@ Public Class Form1
         End If
     End Sub
 
-    Public Sub decouvrir(cell As MineCell)
+    Public Sub Discover(cell As MineCell)
         Dim point As Point = cell.getPoint
         Dim x As Integer = point.X
         Dim y As Integer = point.Y
@@ -132,7 +119,7 @@ Public Class Form1
             If MineTmp.getCellValue < MineCell.MineStates.BeginCell And Not MineTmp.isDiscovered Then
                 MineTmp.decovery()
                 If MineTmp.getCellValue = MineCell.MineStates.DefaultCellDiscovered Then
-                    decouvrir(MineTmp)
+                    Discover(MineTmp)
                 End If
             End If
         End If
@@ -141,7 +128,7 @@ Public Class Form1
             If MineTmp.getCellValue < MineCell.MineStates.BeginCell And Not MineTmp.isDiscovered Then
                 MineTmp.decovery()
                 If MineTmp.getCellValue = MineCell.MineStates.DefaultCellDiscovered Then
-                    decouvrir(MineTmp)
+                    Discover(MineTmp)
                 End If
             End If
         End If
@@ -150,7 +137,7 @@ Public Class Form1
             If MineTmp.getCellValue < MineCell.MineStates.BeginCell And Not MineTmp.isDiscovered Then
                 MineTmp.decovery()
                 If MineTmp.getCellValue = MineCell.MineStates.DefaultCellDiscovered Then
-                    decouvrir(MineTmp)
+                    Discover(MineTmp)
                 End If
             End If
         End If
@@ -159,7 +146,7 @@ Public Class Form1
             If MineTmp.getCellValue < MineCell.MineStates.BeginCell And Not MineTmp.isDiscovered Then
                 MineTmp.decovery()
                 If MineTmp.getCellValue = MineCell.MineStates.DefaultCellDiscovered Then
-                    decouvrir(MineTmp)
+                    Discover(MineTmp)
                 End If
             End If
         End If
@@ -168,7 +155,7 @@ Public Class Form1
             If MineTmp.getCellValue < MineCell.MineStates.BeginCell And Not MineTmp.isDiscovered Then
                 MineTmp.decovery()
                 If MineTmp.getCellValue = MineCell.MineStates.DefaultCellDiscovered Then
-                    decouvrir(MineTmp)
+                    Discover(MineTmp)
                 End If
             End If
         End If
@@ -177,7 +164,7 @@ Public Class Form1
             If MineTmp.getCellValue < MineCell.MineStates.BeginCell And Not MineTmp.isDiscovered Then
                 MineTmp.decovery()
                 If MineTmp.getCellValue = MineCell.MineStates.DefaultCellDiscovered Then
-                    decouvrir(MineTmp)
+                    Discover(MineTmp)
                 End If
             End If
         End If
@@ -186,7 +173,7 @@ Public Class Form1
             If MineTmp.getCellValue < MineCell.MineStates.BeginCell And Not MineTmp.isDiscovered Then
                 MineTmp.decovery()
                 If MineTmp.getCellValue = MineCell.MineStates.DefaultCellDiscovered Then
-                    decouvrir(MineTmp)
+                    Discover(MineTmp)
                 End If
             End If
         End If
@@ -195,58 +182,33 @@ Public Class Form1
             If MineTmp.getCellValue < MineCell.MineStates.BeginCell And Not MineTmp.isDiscovered Then
                 MineTmp.decovery()
                 If MineTmp.getCellValue = MineCell.MineStates.DefaultCellDiscovered Then
-                    decouvrir(MineTmp)
+                    Discover(MineTmp)
                 End If
             End If
         End If
     End Sub
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Trace("load form1")
-        Try
-
-            XmlSettings.Load(Application.StartupPath & "\Demineur.xml")
-
-            Dim NodesList As XmlNodeList = XmlSettings.GetElementsByTagName("EnableTraces")
-            For Each Node As XmlNode In NodesList
-
-                If (Not Boolean.TryParse(Node.InnerText, ToolStripMenuItemTrace.Checked)) Then
-                    ToolStripMenuItemTrace.Checked = False
-                End If
-                Exit For
-
-            Next
-
-            NodesList = XmlSettings.GetElementsByTagName("Gamer")
-            For Each Node As XmlNode In NodesList
-
-                GamersList.Add(Node.InnerText)
-
-            Next
-
-
-
-
-        Catch ex As Exception
-            Trace("No xml file found, assume default settings values")
-
-            ToolStripMenuItemTrace.Checked = False
-
-        End Try
-
-        For Each gamer As String In GamersList
-            ComboBox1.Items.Add(gamer)
-        Next
-
+        Trace("load Game")
+        LabelGamerName.Text = AppSettings.LastGamer
+        Me.ToolStripMenuItemTrace.Checked = AppSettings.ActiveTrace
+        Grid.Enabled = False
         GenerateCountdown(3)
         GenerateGrid()
         TextBoxTrace.Visible = ToolStripMenuItemTrace.Checked
-        Trace("load form1 finish")
+        If Not TextBoxTrace.Visible Then
+            Me.Height -= TextBoxTrace.Height
+        End If
+
+        Trace("load Game finish")
+
     End Sub
 
     Private Sub ToolStripMenuItemTrace_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItemTrace.Click
         ToolStripMenuItemTrace.Checked = Not ToolStripMenuItemTrace.Checked
+        Launcher.ToolStripMenuItemTrace.Checked = ToolStripMenuItemTrace.Checked
 
         TextBoxTrace.Visible = ToolStripMenuItemTrace.Checked
+        AppSettings.ActiveTrace = ToolStripMenuItemTrace.Checked
 
         If (TextBoxTrace.Visible) Then
             Me.Height += TextBoxTrace.Height
@@ -257,8 +219,13 @@ Public Class Form1
     End Sub
 
     Private Sub ButtonStart_Click(sender As Object, e As EventArgs) Handles ButtonStart.Click
-        Trace("Start timer")
-        TimerGame.Start()
+        If Countdown = GameTime Then
+            Trace("Start timer")
+            TimerGame.Start()
+            Grid.Enabled = True
+        Else
+            Trace("The counter is deactivated, the game has already been started")
+        End If
     End Sub
 
     Private Sub TimerGame_Tick(sender As Object, e As EventArgs) Handles TimerGame.Tick
@@ -309,67 +276,25 @@ Public Class Form1
         Next
     End Sub
 
-    Private Sub Form1_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
 
-        Try
-
-            XmlSettings.RemoveAll()
-
-            Dim declarationElement As XmlDeclaration = XmlSettings.CreateXmlDeclaration("1.0", "UTF-8", Nothing)
-            XmlSettings.AppendChild(declarationElement)
-
-            Dim rootElement As XmlElement = XmlSettings.CreateElement("Settings")
-            XmlSettings.AppendChild(rootElement)
-
-            Dim enableTracesElement As XmlElement = XmlSettings.CreateElement("EnableTraces")
-            enableTracesElement.InnerText = ToolStripMenuItemTrace.Checked
-            rootElement.AppendChild(enableTracesElement)
-
-            Dim gamersElement As XmlElement = XmlSettings.CreateElement("Gamers")
-            rootElement.AppendChild(gamersElement)
-
-            For Each gamer As String In GamersList
-
-                Dim gamerElement As XmlElement = XmlSettings.CreateElement("Gamer")
-                gamerElement.InnerText = gamer
-                gamersElement.AppendChild(gamerElement)
-
-            Next
-
-            XmlSettings.Save(Application.StartupPath & "\Demineur.xml")
-
-
-        Catch ex As Exception
-
-            Trace("Impossible to write xml file")
-
-        End Try
-        Trace("form1 closing")
-
+    Private Sub Game_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        Trace("Game closed")
+        Launcher.Show()
     End Sub
 
-    Private Sub Form1_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
-        Trace("form1 closed")
-    End Sub
-
-    Private Sub ComboBox1_Validated(sender As Object, e As EventArgs) Handles ComboBox1.Validated
-
-        Dim newgamer As String = ComboBox1.Text
-
-        Dim bFound As Boolean = False
-        For Each gamer As String In GamersList
-
-            If (String.Compare(gamer, newgamer, True) = 0) Then
-                bFound = True
-                Exit For
+    Public Sub GameOver()
+        Trace("End game")
+        TimerGame.Enabled = False
+        Grid.Enabled = False
+        MsgBox("Game Over !")
+        For Each cell As MineCell In TabMineCells.Values
+            If cell.getCellValue = MineCell.MineStates.BombCell Then
+                cell.decovery()
             End If
         Next
-
-        If (Not bFound) Then
-            GamersList.Add(newgamer)
-            ComboBox1.Items.Add(newgamer)
-        End If
-        Trace("The gamer is : " & newgamer)
     End Sub
 
+    Private Sub Form1_Shown(sender As Object, e As EventArgs) Handles MyBase.Shown
+        TraceFile("Game Shown")
+    End Sub
 End Class
