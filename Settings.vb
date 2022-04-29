@@ -7,6 +7,8 @@ Public Class Settings
     Public LinesCount As Integer = 8
     Public MinesCount = 10
     Public GamersList As List(Of String) = New List(Of String)
+    Public GameTime As Integer = 60
+    Public CountdownEnabled As Boolean = True
 
     Public Sub Load()
         Try
@@ -51,6 +53,24 @@ Public Class Settings
             For Each Node As XmlNode In NodesList
 
                 MinesCount = Node.InnerText
+                Exit For
+
+            Next
+
+            NodesList = XmlSettings.GetElementsByTagName("CountdownEnabled")
+            For Each Node As XmlNode In NodesList
+
+                If (Not Boolean.TryParse(Node.InnerText, CountdownEnabled)) Then
+                    CountdownEnabled = False
+                End If
+                Exit For
+
+            Next
+
+            NodesList = XmlSettings.GetElementsByTagName("GameTime")
+            For Each Node As XmlNode In NodesList
+
+                GameTime = Node.InnerText
                 Exit For
 
             Next
@@ -102,6 +122,14 @@ Public Class Settings
             Dim MinesCountElement As XmlElement = XmlSettings.CreateElement("MinesCount")
             MinesCountElement.InnerText = MinesCount
             rootElement.AppendChild(MinesCountElement)
+
+            Dim CountdownEnabledElement As XmlElement = XmlSettings.CreateElement("CountdownEnabled")
+            CountdownEnabledElement.InnerText = CountdownEnabled
+            rootElement.AppendChild(CountdownEnabledElement)
+
+            Dim GameTimeElement As XmlElement = XmlSettings.CreateElement("GameTime")
+            GameTimeElement.InnerText = GameTime
+            rootElement.AppendChild(GameTimeElement)
 
 
             Dim gamersElement As XmlElement = XmlSettings.CreateElement("Gamers")

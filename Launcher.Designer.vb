@@ -107,19 +107,19 @@ Partial Class Launcher
         '
         Me.ToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItemTrace, Me.ToolStripMenuItemSettings})
         Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
-        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(56, 20)
-        Me.ToolStripMenuItem1.Text = "Option"
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(61, 20)
+        Me.ToolStripMenuItem1.Text = "Options"
         '
         'ToolStripMenuItemTrace
         '
         Me.ToolStripMenuItemTrace.Name = "ToolStripMenuItemTrace"
-        Me.ToolStripMenuItemTrace.Size = New System.Drawing.Size(116, 22)
+        Me.ToolStripMenuItemTrace.Size = New System.Drawing.Size(180, 22)
         Me.ToolStripMenuItemTrace.Text = "Trace"
         '
         'ToolStripMenuItemSettings
         '
         Me.ToolStripMenuItemSettings.Name = "ToolStripMenuItemSettings"
-        Me.ToolStripMenuItemSettings.Size = New System.Drawing.Size(116, 22)
+        Me.ToolStripMenuItemSettings.Size = New System.Drawing.Size(180, 22)
         Me.ToolStripMenuItemSettings.Text = "Settings"
         '
         'ErrorProviderLauncher

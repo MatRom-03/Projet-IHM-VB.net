@@ -2,12 +2,14 @@
 Public Class Launcher
 
     Private Sub BtnNewGame_Click(sender As Object, e As EventArgs) Handles BtnNewGame.Click
-        If ComboBoxNameGamer.Text.Length < 3 Then
-            Me.ErrorProviderLauncher.SetError(ComboBoxNameGamer, "Nom trop court.")
-            Return
-        End If
         Dim newgamer As String = ComboBoxNameGamer.Text
-        newgamer.Trim()
+        newgamer = newgamer.Trim()
+        If newgamer.Length < 3 Then
+            Me.ErrorProviderLauncher.SetError(ComboBoxNameGamer, "Nom trop court, il ne doit pas contenir d'espace au début ou à la fin")
+            Return
+        Else
+            Me.ErrorProviderLauncher.Clear()
+        End If
         Dim bFound As Boolean = False
         For Each gamer As String In AppSettings.GamersList
 
@@ -30,6 +32,7 @@ Public Class Launcher
 
     Private Sub ToolStripMenuItemTrace_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItemTrace.Click
         ToolStripMenuItemTrace.Checked = Not ToolStripMenuItemTrace.Checked
+        Trace("Trace option status : " & ToolStripMenuItemTrace.Checked)
 
         TextBoxTrace.Visible = ToolStripMenuItemTrace.Checked
         AppSettings.ActiveTrace = ToolStripMenuItemTrace.Checked
@@ -54,11 +57,11 @@ Public Class Launcher
     End Sub
 
     Private Sub Form1_FormClosing(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
-        Trace("Form1 closed")
+        Trace("Launcher closed")
     End Sub
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Trace("load form1")
+        Trace("Load Launcher")
         ComboBoxNameGamer.Text = AppSettings.LastGamer
         Me.ToolStripMenuItemTrace.Checked = AppSettings.ActiveTrace
 
@@ -66,7 +69,7 @@ Public Class Launcher
             ComboBoxNameGamer.Items.Add(gamer)
         Next
 
-        Trace("load form1 finish")
+        Trace("Load Launcher finish")
     End Sub
 
     Private Sub BtnExit_Click(sender As Object, e As EventArgs) Handles BtnExit.Click
@@ -76,7 +79,7 @@ Public Class Launcher
     End Sub
 
     Private Sub Form1_Shown(sender As Object, e As EventArgs) Handles MyBase.Shown
-        TraceFile("Form1 Shown")
+        TraceFile("Launcher Shown")
 
         TextBoxTrace.Visible = ToolStripMenuItemTrace.Checked
 

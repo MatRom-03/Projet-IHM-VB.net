@@ -1,11 +1,10 @@
 ﻿Public Class Game
 
-    Dim GameTime As Integer = 60
-    Dim Countdown As Integer = GameTime
-    Dim nbMines = 10
-    Dim ColumnsCount As Integer = 8
-    Dim LinesCount As Integer = 8
     Dim TabMineCells As New Hashtable
+    Dim GameStart As Boolean = False
+    Dim Countdown As Integer = AppSettings.GameTime
+    Dim FlagCount As Integer = AppSettings.MinesCount
+    Dim CellDiscovered As Integer = 0
 
     Public Sub Trace(TheTrace As String)
         Dim trace As String = GameLuncher.TraceFile(TheTrace)
@@ -32,8 +31,8 @@
 
     Private Sub GenerateGrid()
 
-        Dim GridWidth = ColumnsCount * MineCell.MineCellWidth
-        Dim GridHeight = LinesCount * MineCell.MineCellHeight
+        Dim GridWidth = AppSettings.ColumnsCount * MineCell.MineCellWidth
+        Dim GridHeight = AppSettings.LinesCount * MineCell.MineCellHeight
 
         Grid.Width = GridWidth
         Grid.Height = GridHeight
@@ -41,20 +40,20 @@
         Dim index As Integer = 0
 
 
-        For LineIndex As Integer = 0 To LinesCount - 1
-            For ColumnIndex As Integer = 0 To ColumnsCount - 1
+        For LineIndex As Integer = 0 To AppSettings.LinesCount - 1
+            For ColumnIndex As Integer = 0 To AppSettings.ColumnsCount - 1
                 TabMineCells.Add(New Point(ColumnIndex, LineIndex), New MineCell(ImageListPictures, 9, ColumnIndex, LineIndex))
                 index += 1
             Next
         Next
 
-        For i As Integer = 0 To nbMines - 1
+        For i As Integer = 0 To AppSettings.MinesCount - 1
 
             While (True)
                 Randomize()
-                Dim valueX As Integer = CInt(Int((ColumnsCount * Rnd()) + 1))
-                Dim valueY As Integer = CInt(Int((ColumnsCount * Rnd()) + 1))
-                Dim point As New Point(valueX Mod ColumnsCount, valueY Mod LinesCount)
+                Dim valueX As Integer = CInt(Int((AppSettings.ColumnsCount * Rnd()) + 1))
+                Dim valueY As Integer = CInt(Int((AppSettings.ColumnsCount * Rnd()) + 1))
+                Dim point As New Point(valueX Mod AppSettings.ColumnsCount, valueY Mod AppSettings.LinesCount)
                 Dim cellMine As MineCell = TabMineCells.Item(point)
                 If cellMine.getCellValue <> MineCell.MineStates.BombCell Then
                     cellMine.isMine()
@@ -79,7 +78,7 @@
             MineTmp = TabMineCells.Item(New Point(x - 1, y))
             MineTmp.addVoisin()
         End If
-        If x <> ColumnsCount - 1 Then
+        If x <> AppSettings.ColumnsCount - 1 Then
             MineTmp = TabMineCells.Item(New Point(x + 1, y))
             MineTmp.addVoisin()
         End If
@@ -87,7 +86,7 @@
             MineTmp = TabMineCells.Item(New Point(x, y - 1))
             MineTmp.addVoisin()
         End If
-        If y <> LinesCount - 1 Then
+        If y <> AppSettings.LinesCount - 1 Then
             MineTmp = TabMineCells.Item(New Point(x, y + 1))
             MineTmp.addVoisin()
         End If
@@ -95,15 +94,15 @@
             MineTmp = TabMineCells.Item(New Point(x - 1, y - 1))
             MineTmp.addVoisin()
         End If
-        If x <> 0 And y <> LinesCount - 1 Then
+        If x <> 0 And y <> AppSettings.LinesCount - 1 Then
             MineTmp = TabMineCells.Item(New Point(x - 1, y + 1))
             MineTmp.addVoisin()
         End If
-        If x <> ColumnsCount - 1 And y <> 0 Then
+        If x <> AppSettings.ColumnsCount - 1 And y <> 0 Then
             MineTmp = TabMineCells.Item(New Point(x + 1, y - 1))
             MineTmp.addVoisin()
         End If
-        If x <> ColumnsCount - 1 And y <> LinesCount - 1 Then
+        If x <> AppSettings.ColumnsCount - 1 And y <> AppSettings.LinesCount - 1 Then
             MineTmp = TabMineCells.Item(New Point(x + 1, y + 1))
             MineTmp.addVoisin()
         End If
@@ -123,7 +122,7 @@
                 End If
             End If
         End If
-        If x <> ColumnsCount - 1 Then
+        If x <> AppSettings.ColumnsCount - 1 Then
             MineTmp = TabMineCells.Item(New Point(x + 1, y))
             If MineTmp.getCellValue < MineCell.MineStates.BeginCell And Not MineTmp.isDiscovered Then
                 MineTmp.decovery()
@@ -141,7 +140,7 @@
                 End If
             End If
         End If
-        If y <> LinesCount - 1 Then
+        If y <> AppSettings.LinesCount - 1 Then
             MineTmp = TabMineCells.Item(New Point(x, y + 1))
             If MineTmp.getCellValue < MineCell.MineStates.BeginCell And Not MineTmp.isDiscovered Then
                 MineTmp.decovery()
@@ -159,7 +158,7 @@
                 End If
             End If
         End If
-        If x <> 0 And y <> LinesCount - 1 Then
+        If x <> 0 And y <> AppSettings.LinesCount - 1 Then
             MineTmp = TabMineCells.Item(New Point(x - 1, y + 1))
             If MineTmp.getCellValue < MineCell.MineStates.BeginCell And Not MineTmp.isDiscovered Then
                 MineTmp.decovery()
@@ -168,7 +167,7 @@
                 End If
             End If
         End If
-        If x <> ColumnsCount - 1 And y <> 0 Then
+        If x <> AppSettings.ColumnsCount - 1 And y <> 0 Then
             MineTmp = TabMineCells.Item(New Point(x + 1, y - 1))
             If MineTmp.getCellValue < MineCell.MineStates.BeginCell And Not MineTmp.isDiscovered Then
                 MineTmp.decovery()
@@ -177,7 +176,7 @@
                 End If
             End If
         End If
-        If x <> ColumnsCount - 1 And y <> LinesCount - 1 Then
+        If x <> AppSettings.ColumnsCount - 1 And y <> AppSettings.LinesCount - 1 Then
             MineTmp = TabMineCells.Item(New Point(x + 1, y + 1))
             If MineTmp.getCellValue < MineCell.MineStates.BeginCell And Not MineTmp.isDiscovered Then
                 MineTmp.decovery()
@@ -192,7 +191,10 @@
         LabelGamerName.Text = AppSettings.LastGamer
         Me.ToolStripMenuItemTrace.Checked = AppSettings.ActiveTrace
         Grid.Enabled = False
-        GenerateCountdown(3)
+        GeneratePanelNumber(3, PanelCountdown)
+        GeneratePanelNumber(3, PanelFlagCount)
+        PanelNumberSetImage(Countdown, PanelCountdown)
+        PanelNumberSetImage(FlagCount, PanelFlagCount)
         GenerateGrid()
         TextBoxTrace.Visible = ToolStripMenuItemTrace.Checked
         If Not TextBoxTrace.Visible Then
@@ -218,11 +220,15 @@
 
     End Sub
 
+
     Private Sub ButtonStart_Click(sender As Object, e As EventArgs) Handles ButtonStart.Click
-        If Countdown = GameTime Then
-            Trace("Start timer")
-            TimerGame.Start()
+        If Not GameStart Then
+            If AppSettings.CountdownEnabled Then
+                Trace("Start timer")
+                TimerGame.Start()
+            End If
             Grid.Enabled = True
+            GameStart = True
         Else
             Trace("The counter is deactivated, the game has already been started")
         End If
@@ -231,41 +237,40 @@
     Private Sub TimerGame_Tick(sender As Object, e As EventArgs) Handles TimerGame.Tick
 
         If (Countdown > 0) Then
-            If Countdown = 1 Then
-                Trace("End Timer")
-            End If
             Countdown -= 1
         Else
-            TimerGame.Enabled = False
+            Trace("End Timer")
+            GameOver()
         End If
 
-        CountdownSetImage(Countdown)
+        PanelNumberSetImage(Countdown, PanelCountdown)
 
     End Sub
 
 
-    Private Sub GenerateCountdown(ColumnsCount As Integer)
+    Private Sub GeneratePanelNumber(ColumnsCount As Integer, panel As Panel)
 
         Dim CountdownWidth = ColumnsCount * CountdownCell.CountdownCellWidth
         Dim CountdownHeight = CountdownCell.CountdownCellHeight
 
-        PanelCountdown.Width = CountdownWidth
-        PanelCountdown.Height = CountdownHeight
+        panel.Width = CountdownWidth
+        panel.Height = CountdownHeight
 
         For ColumnIndex As Integer = 0 To ColumnsCount - 1
 
-            PanelCountdown.Controls.Add(New CountdownCell(ImageListCountdown, 0, ColumnIndex))
+            panel.Controls.Add(New CountdownCell(ImageListCountdown, 0, ColumnIndex))
 
         Next
 
     End Sub
 
-    Private Sub CountdownSetImage(Number As Integer)
+
+    Private Sub PanelNumberSetImage(Number As Integer, panel As Panel)
 
         Dim power As Integer = Math.Pow(10, PanelCountdown.Controls.Count - 1)
         Dim calcul As Integer = Number
 
-        For Each panelindex As CountdownCell In PanelCountdown.Controls
+        For Each panelindex As CountdownCell In panel.Controls
 
             Dim result As Integer = Math.Truncate(calcul / power)
             panelindex.setNumber(result)
@@ -286,15 +291,32 @@
         Trace("End game")
         TimerGame.Enabled = False
         Grid.Enabled = False
-        MsgBox("Game Over !")
         For Each cell As MineCell In TabMineCells.Values
             If cell.getCellValue = MineCell.MineStates.BombCell Then
                 cell.decovery()
             End If
         Next
+        MsgBox("Game Over !")
     End Sub
 
     Private Sub Form1_Shown(sender As Object, e As EventArgs) Handles MyBase.Shown
         TraceFile("Game Shown")
     End Sub
+
+    Public Function FlagUsed()
+        Dim Remaining As Boolean = False
+        If FlagCount > 0 Then
+            FlagCount -= 1
+        Else
+            Remaining = True
+        End If
+        PanelNumberSetImage(FlagCount, PanelFlagCount)
+        Return Remaining
+    End Function
+
+    Public Sub FlagNotUsed()
+        FlagCount += 1
+        PanelNumberSetImage(FlagCount, PanelFlagCount)
+    End Sub
+
 End Class

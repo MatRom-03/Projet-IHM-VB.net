@@ -37,8 +37,11 @@ Partial Class Game
         Me.ToolStripMenuItemTrace = New System.Windows.Forms.ToolStripMenuItem()
         Me.TimerGame = New System.Windows.Forms.Timer(Me.components)
         Me.ImageListCountdown = New System.Windows.Forms.ImageList(Me.components)
+        Me.PanelFlagCount = New System.Windows.Forms.Panel()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.Panel1.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Grid
@@ -68,20 +71,21 @@ Partial Class Game
         '
         'Panel1
         '
+        Me.Panel1.Controls.Add(Me.PictureBox1)
+        Me.Panel1.Controls.Add(Me.PanelFlagCount)
         Me.Panel1.Controls.Add(Me.labelName)
         Me.Panel1.Controls.Add(Me.LabelGamerName)
         Me.Panel1.Controls.Add(Me.PanelCountdown)
-        Me.Panel1.Controls.Add(Me.ButtonStart)
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel1.Location = New System.Drawing.Point(0, 24)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(444, 72)
+        Me.Panel1.Size = New System.Drawing.Size(407, 72)
         Me.Panel1.TabIndex = 2
         '
         'labelName
         '
         Me.labelName.AutoSize = True
-        Me.labelName.Location = New System.Drawing.Point(113, 35)
+        Me.labelName.Location = New System.Drawing.Point(108, 30)
         Me.labelName.Name = "labelName"
         Me.labelName.Size = New System.Drawing.Size(82, 13)
         Me.labelName.TabIndex = 8
@@ -90,7 +94,7 @@ Partial Class Game
         'LabelGamerName
         '
         Me.LabelGamerName.AutoSize = True
-        Me.LabelGamerName.Location = New System.Drawing.Point(212, 35)
+        Me.LabelGamerName.Location = New System.Drawing.Point(196, 30)
         Me.LabelGamerName.Name = "LabelGamerName"
         Me.LabelGamerName.Size = New System.Drawing.Size(39, 13)
         Me.LabelGamerName.TabIndex = 7
@@ -106,9 +110,9 @@ Partial Class Game
         '
         'ButtonStart
         '
-        Me.ButtonStart.Location = New System.Drawing.Point(284, 30)
+        Me.ButtonStart.Location = New System.Drawing.Point(284, 302)
         Me.ButtonStart.Name = "ButtonStart"
-        Me.ButtonStart.Size = New System.Drawing.Size(75, 23)
+        Me.ButtonStart.Size = New System.Drawing.Size(59, 23)
         Me.ButtonStart.TabIndex = 3
         Me.ButtonStart.Text = "Start"
         Me.ButtonStart.UseVisualStyleBackColor = True
@@ -122,7 +126,7 @@ Partial Class Game
         Me.TextBoxTrace.Name = "TextBoxTrace"
         Me.TextBoxTrace.ReadOnly = True
         Me.TextBoxTrace.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.TextBoxTrace.Size = New System.Drawing.Size(444, 84)
+        Me.TextBoxTrace.Size = New System.Drawing.Size(407, 84)
         Me.TextBoxTrace.TabIndex = 4
         '
         'MenuStrip1
@@ -130,7 +134,7 @@ Partial Class Game
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem1})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(444, 24)
+        Me.MenuStrip1.Size = New System.Drawing.Size(407, 24)
         Me.MenuStrip1.TabIndex = 5
         Me.MenuStrip1.Text = "MenuStrip1"
         '
@@ -166,16 +170,34 @@ Partial Class Game
         Me.ImageListCountdown.Images.SetKeyName(8, "Countdown 8.png")
         Me.ImageListCountdown.Images.SetKeyName(9, "Countdown 9.png")
         '
+        'PanelFlagCount
+        '
+        Me.PanelFlagCount.BackColor = System.Drawing.SystemColors.Window
+        Me.PanelFlagCount.Location = New System.Drawing.Point(325, 13)
+        Me.PanelFlagCount.Name = "PanelFlagCount"
+        Me.PanelFlagCount.Size = New System.Drawing.Size(70, 48)
+        Me.PanelFlagCount.TabIndex = 7
+        '
+        'PictureBox1
+        '
+        Me.PictureBox1.Image = Global.Projet_IHM_VB.net.My.Resources.Resources.Flag_V2
+        Me.PictureBox1.Location = New System.Drawing.Point(286, 20)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(28, 30)
+        Me.PictureBox1.TabIndex = 9
+        Me.PictureBox1.TabStop = False
+        '
         'Game
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.AppWorkspace
-        Me.ClientSize = New System.Drawing.Size(444, 415)
+        Me.ClientSize = New System.Drawing.Size(407, 415)
         Me.Controls.Add(Me.TextBoxTrace)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.Grid)
         Me.Controls.Add(Me.MenuStrip1)
+        Me.Controls.Add(Me.ButtonStart)
         Me.MainMenuStrip = Me.MenuStrip1
         Me.Name = "Game"
         Me.Text = "Minesweeper"
@@ -183,6 +205,7 @@ Partial Class Game
         Me.Panel1.PerformLayout()
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -201,4 +224,6 @@ Partial Class Game
     Friend WithEvents PanelCountdown As Panel
     Friend WithEvents LabelGamerName As Label
     Friend WithEvents labelName As Label
+    Friend WithEvents PanelFlagCount As Panel
+    Friend WithEvents PictureBox1 As PictureBox
 End Class

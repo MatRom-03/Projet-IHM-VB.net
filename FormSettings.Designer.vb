@@ -32,6 +32,9 @@ Partial Class FormSettings
         Me.TextBoxMinesCount = New System.Windows.Forms.TextBox()
         Me.ButtonCancel = New System.Windows.Forms.Button()
         Me.ErrorProviderSettings = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.TextBoxCountdown = New System.Windows.Forms.TextBox()
+        Me.LabelGameTime = New System.Windows.Forms.Label()
+        Me.CheckBoxCountdown = New System.Windows.Forms.CheckBox()
         CType(Me.ErrorProviderSettings, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -64,7 +67,7 @@ Partial Class FormSettings
         '
         'ButtonValidate
         '
-        Me.ButtonValidate.Location = New System.Drawing.Point(181, 172)
+        Me.ButtonValidate.Location = New System.Drawing.Point(181, 210)
         Me.ButtonValidate.Name = "ButtonValidate"
         Me.ButtonValidate.Size = New System.Drawing.Size(75, 23)
         Me.ButtonValidate.TabIndex = 3
@@ -95,7 +98,7 @@ Partial Class FormSettings
         'ButtonCancel
         '
         Me.ButtonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.ButtonCancel.Location = New System.Drawing.Point(42, 172)
+        Me.ButtonCancel.Location = New System.Drawing.Point(42, 210)
         Me.ButtonCancel.Name = "ButtonCancel"
         Me.ButtonCancel.Size = New System.Drawing.Size(75, 23)
         Me.ButtonCancel.TabIndex = 8
@@ -106,13 +109,42 @@ Partial Class FormSettings
         '
         Me.ErrorProviderSettings.ContainerControl = Me
         '
+        'TextBoxCountdown
+        '
+        Me.TextBoxCountdown.Location = New System.Drawing.Point(156, 154)
+        Me.TextBoxCountdown.Name = "TextBoxCountdown"
+        Me.TextBoxCountdown.Size = New System.Drawing.Size(100, 20)
+        Me.TextBoxCountdown.TabIndex = 10
+        '
+        'LabelGameTime
+        '
+        Me.LabelGameTime.AutoSize = True
+        Me.LabelGameTime.Location = New System.Drawing.Point(57, 157)
+        Me.LabelGameTime.Name = "LabelGameTime"
+        Me.LabelGameTime.Size = New System.Drawing.Size(77, 13)
+        Me.LabelGameTime.TabIndex = 9
+        Me.LabelGameTime.Text = "Temps de jeu :"
+        '
+        'CheckBoxCountdown
+        '
+        Me.CheckBoxCountdown.AutoSize = True
+        Me.CheckBoxCountdown.Location = New System.Drawing.Point(42, 125)
+        Me.CheckBoxCountdown.Name = "CheckBoxCountdown"
+        Me.CheckBoxCountdown.Size = New System.Drawing.Size(117, 17)
+        Me.CheckBoxCountdown.TabIndex = 11
+        Me.CheckBoxCountdown.Text = "Activer le compteur"
+        Me.CheckBoxCountdown.UseVisualStyleBackColor = True
+        '
         'FormSettings
         '
         Me.AcceptButton = Me.ButtonValidate
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.CancelButton = Me.ButtonCancel
-        Me.ClientSize = New System.Drawing.Size(316, 241)
+        Me.ClientSize = New System.Drawing.Size(316, 262)
+        Me.Controls.Add(Me.CheckBoxCountdown)
+        Me.Controls.Add(Me.TextBoxCountdown)
+        Me.Controls.Add(Me.LabelGameTime)
         Me.Controls.Add(Me.ButtonCancel)
         Me.Controls.Add(Me.TextBoxMinesCount)
         Me.Controls.Add(Me.TextBoxLinesCount)
@@ -138,4 +170,7 @@ Partial Class FormSettings
     Friend WithEvents TextBoxMinesCount As TextBox
     Friend WithEvents ButtonCancel As Button
     Friend WithEvents ErrorProviderSettings As ErrorProvider
+    Friend WithEvents TextBoxCountdown As TextBox
+    Friend WithEvents LabelGameTime As Label
+    Friend WithEvents CheckBoxCountdown As CheckBox
 End Class

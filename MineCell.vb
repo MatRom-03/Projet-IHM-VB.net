@@ -17,6 +17,7 @@
 
     Dim ImageListPictures As ImageList
     Dim decouvert As Boolean = False
+    Dim isFlag As Boolean = False
     Dim value As Integer = MineStates.DefaultCellDiscovered
     Dim PosX As Integer
     Dim PosY As Integer
@@ -33,16 +34,37 @@
     Protected Overrides Sub OnMouseClick(e As MouseEventArgs)
         MyBase.OnMouseClick(e)
 
+
+
+
+
         If e.Button = MouseButtons.Right And Not decouvert Then
             Game.Trace("Clic droit (" & PosX & "," & PosY & ")")
-            Me.BackgroundImage = Me.ImageListPictures.Images(MineStates.FlagImageCell)
+            If isFlag Then
+                Me.BackgroundImage = Me.ImageListPictures.Images(MineStates.BeginCell)
+                Game.FlagNotUsed()
+                isFlag = False
+            Else
+                If Not Game.FlagUsed() Then
+                    Me.BackgroundImage = Me.ImageListPictures.Images(MineStates.FlagImageCell)
+                    isFlag = True
+                End If
+            End If
         ElseIf e.Button = MouseButtons.Left And Not decouvert Then
             Game.Trace("Clic gauche (" & PosX & "," & PosY & ")")
             decovery()
             If value = MineStates.DefaultCellDiscovered Then
+                If isFlag Then
+                    Game.FlagNotUsed()
+                    isFlag = False
+                End If
                 Game.Discover(Me)
-            End If
-            If value = MineStates.BombCell Then
+                End If
+                If value = MineStates.BombCell Then
+                If isFlag Then
+                    Game.FlagNotUsed()
+                    isFlag = False
+                End If
                 Game.GameOver()
             End If
         End If
@@ -52,6 +74,10 @@
     Public Sub decovery()
         Me.BackgroundImage = Me.ImageListPictures.Images(Me.value)
         decouvert = True
+        If isFlag Then
+            Game.FlagNotUsed()
+            isFlag = False
+        End If
     End Sub
 
     Public Sub isMine()

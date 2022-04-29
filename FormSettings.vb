@@ -4,23 +4,34 @@
         TextBoxColumnsCount.Text = AppSettings.ColumnsCount
         TextBoxLinesCount.Text = AppSettings.LinesCount
         TextBoxMinesCount.Text = AppSettings.MinesCount
+        TextBoxCountdown.Text = AppSettings.GameTime
+        CheckBoxCountdown.Checked = AppSettings.CountdownEnabled
+        TextBoxCountdown.Enabled = CheckBoxCountdown.Checked
     End Sub
 
     Private Sub ButtonValidate_Click(sender As Object, e As EventArgs) Handles ButtonValidate.Click
-
+        Me.ErrorProviderSettings.Clear()
         Dim ColumnsCount As Integer
         If Not Integer.TryParse(TextBoxColumnsCount.Text, ColumnsCount) Then
-            Me.ErrorProviderSettings.SetError(TextBoxColumnsCount, "Valeur incorrecte")
+            Me.ErrorProviderSettings.SetError(TextBoxColumnsCount, "Valeur incorrecte.")
             Return
         End If
         Dim LinesCount As Integer
         If Not Integer.TryParse(TextBoxLinesCount.Text, LinesCount) Then
-            Me.ErrorProviderSettings.SetError(TextBoxLinesCount, "Valeur incorrecte")
+            Me.ErrorProviderSettings.SetError(TextBoxLinesCount, "Valeur incorrecte.")
             Return
         End If
         Dim MinesCount As Integer
         If Not Integer.TryParse(TextBoxMinesCount.Text, MinesCount) Then
-            Me.ErrorProviderSettings.SetError(TextBoxMinesCount, "Valeur incorrecte")
+            Me.ErrorProviderSettings.SetError(TextBoxMinesCount, "Valeur incorrecte.")
+            Return
+        End If
+        Dim Countdown As Integer
+        If Not Integer.TryParse(TextBoxCountdown.Text, Countdown) Then
+            Me.ErrorProviderSettings.SetError(TextBoxCountdown, "Valeur incorrecte.")
+            Return
+        ElseIf TextBoxCountdown.Text > 999 Then
+            Me.ErrorProviderSettings.SetError(TextBoxCountdown, "Valeur trop élevée, le maximum est de 999 secondes.")
             Return
         End If
 
@@ -35,7 +46,12 @@
         TraceFile("LinesCount setting set to : " & LinesCount)
         AppSettings.MinesCount = MinesCount
         TraceFile("MinesCount setting set to : " & MinesCount)
+        AppSettings.GameTime = Countdown
+        TraceFile("GameTime setting set to : " & Countdown)
+        AppSettings.CountdownEnabled = CheckBoxCountdown.Checked
+        TraceFile("CountdownEnabled setting set to : " & CheckBoxCountdown.Checked)
 
+        Launcher.Trace("Settings have been updated")
         Me.Close()
     End Sub
 
@@ -43,4 +59,7 @@
         Me.Close()
     End Sub
 
+    Private Sub CheckBoxCountdown_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBoxCountdown.CheckedChanged
+        TextBoxCountdown.Enabled = CheckBoxCountdown.Checked
+    End Sub
 End Class
