@@ -1,4 +1,4 @@
-﻿Public Class CountdownCell
+﻿Public Class StickNumberCell
     Inherits Panel
 
     Public Const CountdownCellWidth As Integer = 21

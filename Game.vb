@@ -6,11 +6,9 @@
     Dim CellDiscovered As Integer = 0
     Dim PlayPause As Boolean = True 'True = play et False = Pause
     Dim LastReveal As Integer = 0
+    Private Const Play As Char = "4"
+    Private Const Pause As Char = ";"
 
-    Private Enum EnumPlayPause
-        Pause = 0
-        Play = 1
-    End Enum
 
     Public Sub Trace(TheTrace As String)
         Dim trace As String = GameLuncher.TraceFile(TheTrace)
@@ -198,7 +196,7 @@
         Me.ToolStripMenuItemTrace.Checked = AppSettings.ActiveTrace
         Grid.Enabled = False
         ButtonPlayPause.Enabled = False
-        ButtonPlayPause.BackgroundImage = ImageListPlayPause.Images(EnumPlayPause.Pause)
+        ButtonPlayPause.Text = Pause
         GeneratePanelNumber(3, PanelCountdown)
         GeneratePanelNumber(3, PanelFlagCount)
         PanelNumberSetImage(Countdown, PanelCountdown)
@@ -255,15 +253,15 @@
 
     Private Sub GeneratePanelNumber(ColumnsCount As Integer, panel As Panel)
 
-        Dim CountdownWidth = ColumnsCount * CountdownCell.CountdownCellWidth
-        Dim CountdownHeight = CountdownCell.CountdownCellHeight
+        Dim CountdownWidth = ColumnsCount * StickNumberCell.CountdownCellWidth
+        Dim CountdownHeight = StickNumberCell.CountdownCellHeight
 
         panel.Width = CountdownWidth
         panel.Height = CountdownHeight
 
         For ColumnIndex As Integer = 0 To ColumnsCount - 1
 
-            panel.Controls.Add(New CountdownCell(ImageListCountdown, 0, ColumnIndex))
+            panel.Controls.Add(New StickNumberCell(ImageListCountdown, 0, ColumnIndex))
 
         Next
 
@@ -275,7 +273,7 @@
         Dim power As Integer = Math.Pow(10, PanelCountdown.Controls.Count - 1)
         Dim calcul As Integer = Number
 
-        For Each panelindex As CountdownCell In panel.Controls
+        For Each panelindex As StickNumberCell In panel.Controls
 
             Dim result As Integer = Math.Truncate(calcul / power)
             panelindex.setNumber(result)
@@ -348,13 +346,13 @@
         If PlayPause Then
             Trace("The game is paused")
             BlockGame()
-            ButtonPlayPause.BackgroundImage = ImageListPlayPause.Images(EnumPlayPause.Play)
+            ButtonPlayPause.Text = Play
             PlayPause = Not PlayPause
         Else
             Trace("The game resumes")
             TimerGame.Start()
             Grid.Enabled = True
-            ButtonPlayPause.BackgroundImage = ImageListPlayPause.Images(EnumPlayPause.Pause)
+            ButtonPlayPause.Text = Pause
             PlayPause = Not PlayPause
         End If
     End Sub
@@ -371,4 +369,9 @@
         MsgBox(Results, MsgBoxStyle.OkOnly, "Résultats")
     End Sub
 
+    Private Sub ButtonGiveUp_Click(sender As Object, e As EventArgs) Handles ButtonGiveUp.Click
+        If MsgBox("Etes-vous sûr d'abandonner la partie ?", MsgBoxStyle.YesNo, "Exit Game") = MsgBoxResult.Yes Then
+            Me.Close()
+        End If
+    End Sub
 End Class

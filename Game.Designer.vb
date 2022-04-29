@@ -39,8 +39,8 @@ Partial Class Game
         Me.ToolStripMenuItemTrace = New System.Windows.Forms.ToolStripMenuItem()
         Me.TimerGame = New System.Windows.Forms.Timer(Me.components)
         Me.ImageListCountdown = New System.Windows.Forms.ImageList(Me.components)
+        Me.ButtonGiveUp = New System.Windows.Forms.Button()
         Me.ButtonPlayPause = New System.Windows.Forms.Button()
-        Me.ImageListPlayPause = New System.Windows.Forms.ImageList(Me.components)
         Me.Panel1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.MenuStrip1.SuspendLayout()
@@ -129,7 +129,7 @@ Partial Class Game
         '
         'ButtonStart
         '
-        Me.ButtonStart.Location = New System.Drawing.Point(325, 153)
+        Me.ButtonStart.Location = New System.Drawing.Point(325, 130)
         Me.ButtonStart.Name = "ButtonStart"
         Me.ButtonStart.Size = New System.Drawing.Size(59, 23)
         Me.ButtonStart.TabIndex = 3
@@ -189,20 +189,25 @@ Partial Class Game
         Me.ImageListCountdown.Images.SetKeyName(8, "Countdown 8.png")
         Me.ImageListCountdown.Images.SetKeyName(9, "Countdown 9.png")
         '
+        'ButtonGiveUp
+        '
+        Me.ButtonGiveUp.Location = New System.Drawing.Point(325, 237)
+        Me.ButtonGiveUp.Name = "ButtonGiveUp"
+        Me.ButtonGiveUp.Size = New System.Drawing.Size(59, 23)
+        Me.ButtonGiveUp.TabIndex = 7
+        Me.ButtonGiveUp.Text = "Abandonner"
+        Me.ButtonGiveUp.UseVisualStyleBackColor = True
+        '
         'ButtonPlayPause
         '
-        Me.ButtonPlayPause.Location = New System.Drawing.Point(335, 196)
+        Me.ButtonPlayPause.Enabled = False
+        Me.ButtonPlayPause.Font = New System.Drawing.Font("Webdings", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(2, Byte))
+        Me.ButtonPlayPause.Location = New System.Drawing.Point(334, 175)
         Me.ButtonPlayPause.Name = "ButtonPlayPause"
         Me.ButtonPlayPause.Size = New System.Drawing.Size(40, 40)
-        Me.ButtonPlayPause.TabIndex = 6
+        Me.ButtonPlayPause.TabIndex = 8
+        Me.ButtonPlayPause.Text = ";"
         Me.ButtonPlayPause.UseVisualStyleBackColor = True
-        '
-        'ImageListPlayPause
-        '
-        Me.ImageListPlayPause.ImageStream = CType(resources.GetObject("ImageListPlayPause.ImageStream"), System.Windows.Forms.ImageListStreamer)
-        Me.ImageListPlayPause.TransparentColor = System.Drawing.Color.Transparent
-        Me.ImageListPlayPause.Images.SetKeyName(0, "Pause.png")
-        Me.ImageListPlayPause.Images.SetKeyName(1, "Play.png")
         '
         'Game
         '
@@ -211,6 +216,7 @@ Partial Class Game
         Me.BackColor = System.Drawing.SystemColors.AppWorkspace
         Me.ClientSize = New System.Drawing.Size(407, 415)
         Me.Controls.Add(Me.ButtonPlayPause)
+        Me.Controls.Add(Me.ButtonGiveUp)
         Me.Controls.Add(Me.TextBoxTrace)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.Grid)
@@ -244,6 +250,6 @@ Partial Class Game
     Friend WithEvents labelName As Label
     Friend WithEvents PanelFlagCount As Panel
     Friend WithEvents PictureBox1 As PictureBox
+    Friend WithEvents ButtonGiveUp As Button
     Friend WithEvents ButtonPlayPause As Button
-    Friend WithEvents ImageListPlayPause As ImageList
 End Class

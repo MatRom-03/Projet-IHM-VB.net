@@ -92,4 +92,7 @@ Public Class Launcher
         FormSettings.Show()
     End Sub
 
+    Private Sub BtnStats_Click(sender As Object, e As EventArgs) Handles BtnStats.Click
+        Statistics.Show()
+    End Sub
 End Class

@@ -113,13 +113,13 @@ Partial Class Launcher
         'ToolStripMenuItemTrace
         '
         Me.ToolStripMenuItemTrace.Name = "ToolStripMenuItemTrace"
-        Me.ToolStripMenuItemTrace.Size = New System.Drawing.Size(180, 22)
+        Me.ToolStripMenuItemTrace.Size = New System.Drawing.Size(116, 22)
         Me.ToolStripMenuItemTrace.Text = "Trace"
         '
         'ToolStripMenuItemSettings
         '
         Me.ToolStripMenuItemSettings.Name = "ToolStripMenuItemSettings"
-        Me.ToolStripMenuItemSettings.Size = New System.Drawing.Size(180, 22)
+        Me.ToolStripMenuItemSettings.Size = New System.Drawing.Size(116, 22)
         Me.ToolStripMenuItemSettings.Text = "Settings"
         '
         'ErrorProviderLauncher
@@ -139,7 +139,7 @@ Partial Class Launcher
         Me.Controls.Add(Me.BtnStats)
         Me.Controls.Add(Me.ComboBoxNameGamer)
         Me.Name = "Launcher"
-        Me.Text = "Luncher"
+        Me.Text = "Launcher"
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
         CType(Me.ErrorProviderLauncher, System.ComponentModel.ISupportInitialize).EndInit()
