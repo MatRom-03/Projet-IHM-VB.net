@@ -35,9 +35,6 @@
         MyBase.OnMouseClick(e)
 
 
-
-
-
         If e.Button = MouseButtons.Right And Not decouvert Then
             Game.Trace("Clic droit (" & PosX & "," & PosY & ")")
             If isFlag Then
@@ -48,19 +45,21 @@
                 If Not Game.FlagUsed() Then
                     Me.BackgroundImage = Me.ImageListPictures.Images(MineStates.FlagImageCell)
                     isFlag = True
+                    Game.GameWon()
                 End If
             End If
         ElseIf e.Button = MouseButtons.Left And Not decouvert Then
             Game.Trace("Clic gauche (" & PosX & "," & PosY & ")")
             decovery()
+            Game.LastRevealUpdate()
             If value = MineStates.DefaultCellDiscovered Then
                 If isFlag Then
                     Game.FlagNotUsed()
                     isFlag = False
                 End If
                 Game.Discover(Me)
-                End If
-                If value = MineStates.BombCell Then
+            End If
+            If value = MineStates.BombCell Then
                 If isFlag Then
                     Game.FlagNotUsed()
                     isFlag = False
@@ -77,6 +76,9 @@
         If isFlag Then
             Game.FlagNotUsed()
             isFlag = False
+        End If
+        If Not value = MineStates.BombCell Then
+            Game.CellDiscoveredCount()
         End If
     End Sub
 

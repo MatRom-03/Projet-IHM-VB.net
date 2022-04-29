@@ -1,10 +1,16 @@
 ﻿Public Class Game
 
     Dim TabMineCells As New Hashtable
-    Dim GameStart As Boolean = False
     Dim Countdown As Integer = AppSettings.GameTime
     Dim FlagCount As Integer = AppSettings.MinesCount
     Dim CellDiscovered As Integer = 0
+    Dim PlayPause As Boolean = True 'True = play et False = Pause
+    Dim LastReveal As Integer = 0
+
+    Private Enum EnumPlayPause
+        Pause = 0
+        Play = 1
+    End Enum
 
     Public Sub Trace(TheTrace As String)
         Dim trace As String = GameLuncher.TraceFile(TheTrace)
@@ -191,6 +197,8 @@
         LabelGamerName.Text = AppSettings.LastGamer
         Me.ToolStripMenuItemTrace.Checked = AppSettings.ActiveTrace
         Grid.Enabled = False
+        ButtonPlayPause.Enabled = False
+        ButtonPlayPause.BackgroundImage = ImageListPlayPause.Images(EnumPlayPause.Pause)
         GeneratePanelNumber(3, PanelCountdown)
         GeneratePanelNumber(3, PanelFlagCount)
         PanelNumberSetImage(Countdown, PanelCountdown)
@@ -200,7 +208,7 @@
         If Not TextBoxTrace.Visible Then
             Me.Height -= TextBoxTrace.Height
         End If
-
+        ButtonStart.Enabled = True
         Trace("load Game finish")
 
     End Sub
@@ -222,16 +230,13 @@
 
 
     Private Sub ButtonStart_Click(sender As Object, e As EventArgs) Handles ButtonStart.Click
-        If Not GameStart Then
-            If AppSettings.CountdownEnabled Then
-                Trace("Start timer")
-                TimerGame.Start()
-            End If
-            Grid.Enabled = True
-            GameStart = True
-        Else
-            Trace("The counter is deactivated, the game has already been started")
+        If AppSettings.CountdownEnabled Then
+            Trace("Start timer")
+            TimerGame.Start()
         End If
+        Grid.Enabled = True
+        ButtonPlayPause.Enabled = True
+        ButtonStart.Enabled = False
     End Sub
 
     Private Sub TimerGame_Tick(sender As Object, e As EventArgs) Handles TimerGame.Tick
@@ -288,15 +293,14 @@
     End Sub
 
     Public Sub GameOver()
-        Trace("End game")
-        TimerGame.Enabled = False
-        Grid.Enabled = False
+        Trace("Game Over")
         For Each cell As MineCell In TabMineCells.Values
             If cell.getCellValue = MineCell.MineStates.BombCell Then
                 cell.decovery()
             End If
         Next
-        MsgBox("Game Over !")
+        BlockGame()
+        EndGame("Game Over !")
     End Sub
 
     Private Sub Form1_Shown(sender As Object, e As EventArgs) Handles MyBase.Shown
@@ -317,6 +321,54 @@
     Public Sub FlagNotUsed()
         FlagCount += 1
         PanelNumberSetImage(FlagCount, PanelFlagCount)
+    End Sub
+
+    Public Sub CellDiscoveredCount()
+        CellDiscovered += 1
+        If CellDiscovered = (AppSettings.ColumnsCount * AppSettings.LinesCount - AppSettings.MinesCount) Then
+            Trace("All normal cell have been uncovered")
+            GameWon()
+        End If
+    End Sub
+
+    Public Sub GameWon()
+        If FlagCount = 0 And CellDiscovered = (AppSettings.ColumnsCount * AppSettings.LinesCount - AppSettings.MinesCount) Then
+            Trace("The game is won")
+            BlockGame()
+            EndGame("Vous avez gagné !!")
+        End If
+    End Sub
+
+    Private Sub BlockGame()
+        TimerGame.Stop()
+        Grid.Enabled = False
+    End Sub
+
+    Private Sub ButtonPlayPause_Click(sender As Object, e As EventArgs) Handles ButtonPlayPause.Click
+        If PlayPause Then
+            Trace("The game is paused")
+            BlockGame()
+            ButtonPlayPause.BackgroundImage = ImageListPlayPause.Images(EnumPlayPause.Play)
+            PlayPause = Not PlayPause
+        Else
+            Trace("The game resumes")
+            TimerGame.Start()
+            Grid.Enabled = True
+            ButtonPlayPause.BackgroundImage = ImageListPlayPause.Images(EnumPlayPause.Pause)
+            PlayPause = Not PlayPause
+        End If
+    End Sub
+
+    Public Sub LastRevealUpdate()
+        LastReveal = AppSettings.GameTime - Countdown
+    End Sub
+
+    Public Sub EndGame(result As String)
+        Dim Results As String = ""
+        Results += result & vbNewLine & "Nombre de cellules révélées : " & CellDiscovered & " cellules." & vbNewLine
+        Results += "Temps jusqu'à la dernière révélation : " & LastReveal & " sec. " & vbNewLine
+        Results += "Temps de la partie : " & (AppSettings.GameTime - Countdown) & "sec."
+        MsgBox(Results, MsgBoxStyle.OkOnly, "Résultats")
     End Sub
 
 End Class

@@ -27,6 +27,8 @@ Partial Class Game
         Me.Grid = New System.Windows.Forms.Panel()
         Me.ImageListPictures = New System.Windows.Forms.ImageList(Me.components)
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.PanelFlagCount = New System.Windows.Forms.Panel()
         Me.labelName = New System.Windows.Forms.Label()
         Me.LabelGamerName = New System.Windows.Forms.Label()
         Me.PanelCountdown = New System.Windows.Forms.Panel()
@@ -37,17 +39,17 @@ Partial Class Game
         Me.ToolStripMenuItemTrace = New System.Windows.Forms.ToolStripMenuItem()
         Me.TimerGame = New System.Windows.Forms.Timer(Me.components)
         Me.ImageListCountdown = New System.Windows.Forms.ImageList(Me.components)
-        Me.PanelFlagCount = New System.Windows.Forms.Panel()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.ButtonPlayPause = New System.Windows.Forms.Button()
+        Me.ImageListPlayPause = New System.Windows.Forms.ImageList(Me.components)
         Me.Panel1.SuspendLayout()
-        Me.MenuStrip1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'Grid
         '
         Me.Grid.BackColor = System.Drawing.SystemColors.Window
-        Me.Grid.Location = New System.Drawing.Point(53, 137)
+        Me.Grid.Location = New System.Drawing.Point(96, 117)
         Me.Grid.Name = "Grid"
         Me.Grid.Size = New System.Drawing.Size(186, 158)
         Me.Grid.TabIndex = 1
@@ -82,6 +84,23 @@ Partial Class Game
         Me.Panel1.Size = New System.Drawing.Size(407, 72)
         Me.Panel1.TabIndex = 2
         '
+        'PictureBox1
+        '
+        Me.PictureBox1.Image = Global.Projet_IHM_VB.net.My.Resources.Resources.Flag_V2
+        Me.PictureBox1.Location = New System.Drawing.Point(286, 20)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(28, 30)
+        Me.PictureBox1.TabIndex = 9
+        Me.PictureBox1.TabStop = False
+        '
+        'PanelFlagCount
+        '
+        Me.PanelFlagCount.BackColor = System.Drawing.SystemColors.Window
+        Me.PanelFlagCount.Location = New System.Drawing.Point(325, 13)
+        Me.PanelFlagCount.Name = "PanelFlagCount"
+        Me.PanelFlagCount.Size = New System.Drawing.Size(70, 48)
+        Me.PanelFlagCount.TabIndex = 7
+        '
         'labelName
         '
         Me.labelName.AutoSize = True
@@ -110,7 +129,7 @@ Partial Class Game
         '
         'ButtonStart
         '
-        Me.ButtonStart.Location = New System.Drawing.Point(284, 302)
+        Me.ButtonStart.Location = New System.Drawing.Point(325, 153)
         Me.ButtonStart.Name = "ButtonStart"
         Me.ButtonStart.Size = New System.Drawing.Size(59, 23)
         Me.ButtonStart.TabIndex = 3
@@ -170,22 +189,20 @@ Partial Class Game
         Me.ImageListCountdown.Images.SetKeyName(8, "Countdown 8.png")
         Me.ImageListCountdown.Images.SetKeyName(9, "Countdown 9.png")
         '
-        'PanelFlagCount
+        'ButtonPlayPause
         '
-        Me.PanelFlagCount.BackColor = System.Drawing.SystemColors.Window
-        Me.PanelFlagCount.Location = New System.Drawing.Point(325, 13)
-        Me.PanelFlagCount.Name = "PanelFlagCount"
-        Me.PanelFlagCount.Size = New System.Drawing.Size(70, 48)
-        Me.PanelFlagCount.TabIndex = 7
+        Me.ButtonPlayPause.Location = New System.Drawing.Point(335, 196)
+        Me.ButtonPlayPause.Name = "ButtonPlayPause"
+        Me.ButtonPlayPause.Size = New System.Drawing.Size(40, 40)
+        Me.ButtonPlayPause.TabIndex = 6
+        Me.ButtonPlayPause.UseVisualStyleBackColor = True
         '
-        'PictureBox1
+        'ImageListPlayPause
         '
-        Me.PictureBox1.Image = Global.Projet_IHM_VB.net.My.Resources.Resources.Flag_V2
-        Me.PictureBox1.Location = New System.Drawing.Point(286, 20)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(28, 30)
-        Me.PictureBox1.TabIndex = 9
-        Me.PictureBox1.TabStop = False
+        Me.ImageListPlayPause.ImageStream = CType(resources.GetObject("ImageListPlayPause.ImageStream"), System.Windows.Forms.ImageListStreamer)
+        Me.ImageListPlayPause.TransparentColor = System.Drawing.Color.Transparent
+        Me.ImageListPlayPause.Images.SetKeyName(0, "Pause.png")
+        Me.ImageListPlayPause.Images.SetKeyName(1, "Play.png")
         '
         'Game
         '
@@ -193,6 +210,7 @@ Partial Class Game
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.AppWorkspace
         Me.ClientSize = New System.Drawing.Size(407, 415)
+        Me.Controls.Add(Me.ButtonPlayPause)
         Me.Controls.Add(Me.TextBoxTrace)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.Grid)
@@ -203,9 +221,9 @@ Partial Class Game
         Me.Text = "Minesweeper"
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -226,4 +244,6 @@ Partial Class Game
     Friend WithEvents labelName As Label
     Friend WithEvents PanelFlagCount As Panel
     Friend WithEvents PictureBox1 As PictureBox
+    Friend WithEvents ButtonPlayPause As Button
+    Friend WithEvents ImageListPlayPause As ImageList
 End Class
