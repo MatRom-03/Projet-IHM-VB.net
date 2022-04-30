@@ -1,4 +1,4 @@
-﻿Module GameLuncher
+﻿Module GameLauncher
     Public AppSettings As Settings = New Settings
     Public Sub Main()
         AppSettings.Load()

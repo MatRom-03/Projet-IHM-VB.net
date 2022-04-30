@@ -1,6 +1,7 @@
 ﻿Public Class FormSettings
 
     Private Sub FormSettings_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        TextBoxPathXml.Text = AppSettings.StoragePathXMLFile
         TextBoxColumnsCount.Text = AppSettings.ColumnsCount
         TextBoxLinesCount.Text = AppSettings.LinesCount
         TextBoxMinesCount.Text = AppSettings.MinesCount
@@ -50,6 +51,8 @@
         TraceFile("GameTime setting set to : " & Countdown)
         AppSettings.CountdownEnabled = CheckBoxCountdown.Checked
         TraceFile("CountdownEnabled setting set to : " & CheckBoxCountdown.Checked)
+        AppSettings.StoragePathXMLFile = FolderBrowserDialogPathXml.SelectedPath
+        TraceFile("The new storage path for the XML file is: " & FolderBrowserDialogPathXml.SelectedPath)
 
         Launcher.Trace("Settings have been updated")
         Me.Close()
@@ -62,4 +65,11 @@
     Private Sub CheckBoxCountdown_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBoxCountdown.CheckedChanged
         TextBoxCountdown.Enabled = CheckBoxCountdown.Checked
     End Sub
+
+    Private Sub ButtonModifyPath_Click(sender As Object, e As EventArgs) Handles ButtonModifyPath.Click
+        FolderBrowserDialogPathXml.SelectedPath = Application.StartupPath
+        FolderBrowserDialogPathXml.ShowDialog()
+        TextBoxPathXml.Text = FolderBrowserDialogPathXml.SelectedPath
+    End Sub
+
 End Class

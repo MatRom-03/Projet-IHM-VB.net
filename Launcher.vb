@@ -45,7 +45,7 @@ Public Class Launcher
 
     End Sub
     Public Sub Trace(TheTrace As String)
-        Dim trace As String = GameLuncher.TraceFile(TheTrace)
+        Dim trace As String = GameLauncher.TraceFile(TheTrace)
         If (Not ToolStripMenuItemTrace.Checked) Then
             Return
         End If

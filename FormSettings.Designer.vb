@@ -35,6 +35,10 @@ Partial Class FormSettings
         Me.TextBoxCountdown = New System.Windows.Forms.TextBox()
         Me.LabelGameTime = New System.Windows.Forms.Label()
         Me.CheckBoxCountdown = New System.Windows.Forms.CheckBox()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.FolderBrowserDialogPathXml = New System.Windows.Forms.FolderBrowserDialog()
+        Me.TextBoxPathXml = New System.Windows.Forms.TextBox()
+        Me.ButtonModifyPath = New System.Windows.Forms.Button()
         CType(Me.ErrorProviderSettings, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -67,7 +71,7 @@ Partial Class FormSettings
         '
         'ButtonValidate
         '
-        Me.ButtonValidate.Location = New System.Drawing.Point(181, 210)
+        Me.ButtonValidate.Location = New System.Drawing.Point(181, 246)
         Me.ButtonValidate.Name = "ButtonValidate"
         Me.ButtonValidate.Size = New System.Drawing.Size(75, 23)
         Me.ButtonValidate.TabIndex = 3
@@ -98,7 +102,7 @@ Partial Class FormSettings
         'ButtonCancel
         '
         Me.ButtonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.ButtonCancel.Location = New System.Drawing.Point(42, 210)
+        Me.ButtonCancel.Location = New System.Drawing.Point(42, 246)
         Me.ButtonCancel.Name = "ButtonCancel"
         Me.ButtonCancel.Size = New System.Drawing.Size(75, 23)
         Me.ButtonCancel.TabIndex = 8
@@ -135,13 +139,44 @@ Partial Class FormSettings
         Me.CheckBoxCountdown.Text = "Activer le compteur"
         Me.CheckBoxCountdown.UseVisualStyleBackColor = True
         '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(42, 188)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(197, 13)
+        Me.Label1.TabIndex = 12
+        Me.Label1.Text = "Emplacement du fichier de sauvegarde :"
+        '
+        'TextBoxPathXml
+        '
+        Me.TextBoxPathXml.Enabled = False
+        Me.TextBoxPathXml.Font = New System.Drawing.Font("Consolas", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBoxPathXml.Location = New System.Drawing.Point(60, 211)
+        Me.TextBoxPathXml.Name = "TextBoxPathXml"
+        Me.TextBoxPathXml.Size = New System.Drawing.Size(266, 20)
+        Me.TextBoxPathXml.TabIndex = 13
+        '
+        'ButtonModifyPath
+        '
+        Me.ButtonModifyPath.Location = New System.Drawing.Point(258, 183)
+        Me.ButtonModifyPath.Name = "ButtonModifyPath"
+        Me.ButtonModifyPath.Size = New System.Drawing.Size(68, 22)
+        Me.ButtonModifyPath.TabIndex = 14
+        Me.ButtonModifyPath.Text = "Modifier"
+        Me.ButtonModifyPath.UseVisualStyleBackColor = True
+        '
         'FormSettings
         '
         Me.AcceptButton = Me.ButtonValidate
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.BackColor = System.Drawing.SystemColors.AppWorkspace
         Me.CancelButton = Me.ButtonCancel
-        Me.ClientSize = New System.Drawing.Size(316, 262)
+        Me.ClientSize = New System.Drawing.Size(377, 289)
+        Me.Controls.Add(Me.ButtonModifyPath)
+        Me.Controls.Add(Me.TextBoxPathXml)
+        Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.CheckBoxCountdown)
         Me.Controls.Add(Me.TextBoxCountdown)
         Me.Controls.Add(Me.LabelGameTime)
@@ -173,4 +208,8 @@ Partial Class FormSettings
     Friend WithEvents TextBoxCountdown As TextBox
     Friend WithEvents LabelGameTime As Label
     Friend WithEvents CheckBoxCountdown As CheckBox
+    Friend WithEvents ButtonModifyPath As Button
+    Friend WithEvents TextBoxPathXml As TextBox
+    Friend WithEvents Label1 As Label
+    Friend WithEvents FolderBrowserDialogPathXml As FolderBrowserDialog
 End Class

@@ -9,6 +9,12 @@ Public Class Settings
     Public GamersList As List(Of String) = New List(Of String)
     Public GameTime As Integer = 60
     Public CountdownEnabled As Boolean = True
+    Public StoragePathXMLFile As String = Application.StartupPath
+
+
+    'faire un autre fichier xml ou txt dans Application.StartupPath pour stocker l'emplacement choisi par l'utilisateur
+
+
 
     Public Sub Load()
         Try
@@ -130,6 +136,10 @@ Public Class Settings
             Dim GameTimeElement As XmlElement = XmlSettings.CreateElement("GameTime")
             GameTimeElement.InnerText = GameTime
             rootElement.AppendChild(GameTimeElement)
+
+            Dim StoragePathXMLFileElement As XmlElement = XmlSettings.CreateElement("StoragePathXMLFile")
+            StoragePathXMLFileElement.InnerText = StoragePathXMLFile
+            rootElement.AppendChild(StoragePathXMLFileElement)
 
 
             Dim gamersElement As XmlElement = XmlSettings.CreateElement("Gamers")

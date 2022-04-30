@@ -95,7 +95,7 @@
     <Compile Include="Launcher.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GameLuncher.vb" />
+    <Compile Include="GameLauncher.vb" />
     <Compile Include="MineCell.vb">
       <SubType>Component</SubType>
     </Compile>
