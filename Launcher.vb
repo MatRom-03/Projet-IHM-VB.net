@@ -59,7 +59,7 @@ Public Class Launcher
 
     End Sub
 
-    Private Sub Form1_FormClosing(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+    Private Sub Form1_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Trace("Launcher closed")
     End Sub
 
@@ -76,9 +76,7 @@ Public Class Launcher
     End Sub
 
     Private Sub BtnExit_Click(sender As Object, e As EventArgs) Handles BtnExit.Click
-        If MsgBox("Etes-vous sûr de quitter le jeu ?", MsgBoxStyle.YesNo, "Exit Game") = MsgBoxResult.Yes Then
-            Me.Close()
-        End If
+        Me.Close()
     End Sub
 
     Private Sub Form1_Shown(sender As Object, e As EventArgs) Handles MyBase.Shown
@@ -97,6 +95,12 @@ Public Class Launcher
 
     Private Sub BtnStats_Click(sender As Object, e As EventArgs) Handles BtnStats.Click
         Statistics.Show()
+    End Sub
+
+    Private Sub Launcher_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
+        If MsgBox("Etes-vous sûr de quitter le jeu ?", MsgBoxStyle.YesNo, "Exit Game") = MsgBoxResult.No Then
+            e.Cancel = True
+        End If
     End Sub
 
 End Class

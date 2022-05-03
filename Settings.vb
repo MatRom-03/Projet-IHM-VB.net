@@ -13,14 +13,18 @@ Public Class Settings
     Public StoragePathXMLFile As String = Application.StartupPath
 
 
-    'faire un autre fichier dans Application.StartupPath pour stocker l'emplacement choisi par l'utilisateur
-
-
 
     Public Sub Load()
         Try
+            StoragePathXMLFile = INIFileAccess.ReadINI("Projet-IHM-VB.net.ini", "Settings", "Path")
+            TraceFile("xml file path : " & StoragePathXMLFile)
+        Catch ex As Exception
+            TraceFile("No .ini file found, assume default settings values")
+        End Try
 
-            XmlSettings.Load(Application.StartupPath & "\Demineur.xml")
+        Try
+
+            XmlSettings.Load(StoragePathXMLFile & "\Demineur.xml")
 
             Dim NodesList As XmlNodeList = XmlSettings.GetElementsByTagName("EnableTraces")
             For Each Node As XmlNode In NodesList
@@ -85,7 +89,7 @@ Public Class Settings
 
             NodesList = XmlSettings.GetElementsByTagName("Gamer")
             For Each Node As XmlNode In NodesList
-                Dim name As String
+                Dim name As String = ""
                 Dim CellDiscoveredMax As Integer
                 Dim TimeGame As Integer
                 Dim GameCount As Integer
@@ -114,7 +118,7 @@ Public Class Settings
 
         Catch ex As Exception
             TraceFile("No xml file found, assume default settings values")
-
+            StoragePathXMLFile = Application.StartupPath
             ActiveTrace = False
 
         End Try
@@ -122,6 +126,15 @@ Public Class Settings
     End Sub
 
     Public Sub save()
+        Try
+            FileSystem.Kill(Application.StartupPath & "\" & "Projet-IHM-VB.net.ini")
+        Catch ex As Exception
+            TraceFile("Impossible to delete .ini file")
+        End Try
+
+        INIFileAccess.WriteINI("Projet-IHM-VB.net.ini", "Settings", "Path", StoragePathXMLFile)
+        TraceFile("xml file save path : " & INIFileAccess.ReadINI("Projet-IHM-VB.net.ini", "Settings", "Path"))
+
         Try
 
             XmlSettings.RemoveAll()
@@ -160,10 +173,6 @@ Public Class Settings
             GameTimeElement.InnerText = GameTime
             rootElement.AppendChild(GameTimeElement)
 
-            Dim StoragePathXMLFileElement As XmlElement = XmlSettings.CreateElement("StoragePathXMLFile")
-            StoragePathXMLFileElement.InnerText = StoragePathXMLFile
-            rootElement.AppendChild(StoragePathXMLFileElement)
-
 
             Dim gamersElement As XmlElement = XmlSettings.CreateElement("Gamers")
             rootElement.AppendChild(gamersElement)
@@ -193,7 +202,7 @@ Public Class Settings
                 gamerElement.AppendChild(TimeCountElement)
             Next
 
-            XmlSettings.Save(Application.StartupPath & "\Demineur.xml")
+            XmlSettings.Save(StoragePathXMLFile & "\Demineur.xml")
 
 
         Catch ex As Exception

@@ -1,5 +1,6 @@
 ﻿Public Class FormSettings
 
+    Dim ValidatedChange As Boolean = False
     Private Sub FormSettings_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         TextBoxPathXml.Text = AppSettings.StoragePathXMLFile
         TextBoxColumnsCount.Text = AppSettings.ColumnsCount
@@ -51,10 +52,11 @@
         TraceFile("GameTime setting set to : " & Countdown)
         AppSettings.CountdownEnabled = CheckBoxCountdown.Checked
         TraceFile("CountdownEnabled setting set to : " & CheckBoxCountdown.Checked)
-        AppSettings.StoragePathXMLFile = FolderBrowserDialogPathXml.SelectedPath
+        AppSettings.StoragePathXMLFile = TextBoxPathXml.Text
         TraceFile("The new storage path for the XML file is: " & FolderBrowserDialogPathXml.SelectedPath)
 
         Launcher.Trace("Settings have been updated")
+        ValidatedChange = True
         Me.Close()
     End Sub
 
@@ -72,4 +74,12 @@
         TextBoxPathXml.Text = FolderBrowserDialogPathXml.SelectedPath
     End Sub
 
+    Private Sub Launcher_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
+        If ValidatedChange Then
+            Return
+        End If
+        If MsgBox("Etes-vous sûr de ne pas enregistrer les modifications ?", MsgBoxStyle.YesNo, "Exit Settings") = MsgBoxResult.No Then
+            e.Cancel = True
+        End If
+    End Sub
 End Class

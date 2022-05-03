@@ -8,6 +8,7 @@
     Dim LastReveal As Integer = 0
     Private Const Play As Char = "4"
     Private Const Pause As Char = ";"
+    Dim GameEnded As Boolean = False
 
 
     Public Sub Trace(TheTrace As String)
@@ -377,11 +378,19 @@
         Results += "Temps jusqu'à la dernière révélation : " & LastReveal & " sec. " & vbNewLine
         Results += "Temps de la partie : " & (AppSettings.GameTime - Countdown) & "sec."
         MsgBox(Results, MsgBoxStyle.OkOnly, "Résultats")
+        GameEnded = True
     End Sub
 
     Private Sub ButtonGiveUp_Click(sender As Object, e As EventArgs) Handles ButtonGiveUp.Click
-        If MsgBox("Etes-vous sûr d'abandonner la partie ?", MsgBoxStyle.YesNo, "Exit Game") = MsgBoxResult.Yes Then
-            Me.Close()
+        Me.Close()
+    End Sub
+
+    Private Sub Launcher_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
+        If GameEnded Then
+            Return
+        End If
+        If MsgBox("Etes-vous sûr d'abandonner la partie ?", MsgBoxStyle.YesNo, "Exit Game") = MsgBoxResult.No Then
+            e.Cancel = True
         End If
     End Sub
 End Class

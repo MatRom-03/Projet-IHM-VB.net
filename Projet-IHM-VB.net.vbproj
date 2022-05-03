@@ -80,6 +80,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="DataGamer.vb" />
+    <Compile Include="INIFileAccess.vb" />
     <Compile Include="Settings.vb" />
     <Compile Include="Statistics.Designer.vb">
       <DependentUpon>Statistics.vb</DependentUpon>
@@ -145,6 +146,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include=".editorconfig" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
