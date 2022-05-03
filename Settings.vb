@@ -3,16 +3,17 @@ Public Class Settings
     Public XmlSettings As XmlDocument = New XmlDocument()
     Public ActiveTrace As Boolean
     Public LastGamer As String
+    Public CurrentPlayer As DataGamer
     Public ColumnsCount As Integer = 8
     Public LinesCount As Integer = 8
     Public MinesCount = 10
-    Public GamersList As List(Of String) = New List(Of String)
+    Public GamersList As List(Of DataGamer) = New List(Of DataGamer)
     Public GameTime As Integer = 60
     Public CountdownEnabled As Boolean = True
     Public StoragePathXMLFile As String = Application.StartupPath
 
 
-    'faire un autre fichier xml ou txt dans Application.StartupPath pour stocker l'emplacement choisi par l'utilisateur
+    'faire un autre fichier dans Application.StartupPath pour stocker l'emplacement choisi par l'utilisateur
 
 
 
@@ -81,10 +82,32 @@ Public Class Settings
 
             Next
 
+
             NodesList = XmlSettings.GetElementsByTagName("Gamer")
             For Each Node As XmlNode In NodesList
+                Dim name As String
+                Dim CellDiscoveredMax As Integer
+                Dim TimeGame As Integer
+                Dim GameCount As Integer
+                Dim TimeCount As Integer
+                For Each ChildNode As XmlNode In Node.ChildNodes
+                    If ChildNode.Name.CompareTo("Name") = 0 Then
+                        name = ChildNode.InnerText
+                    End If
+                    If ChildNode.Name.CompareTo("BestResult") = 0 Then
+                        CellDiscoveredMax = ChildNode.InnerText
+                        TimeGame = ChildNode.Attributes("Time").InnerText
+                    End If
+                    If ChildNode.Name.CompareTo("GameCount") = 0 Then
+                        GameCount = ChildNode.InnerText
+                    End If
+                    If ChildNode.Name.CompareTo("TimeCount") = 0 Then
+                        TimeCount = ChildNode.InnerText
+                    End If
 
-                GamersList.Add(Node.InnerText)
+                Next
+                Dim gamer As DataGamer = New DataGamer(name, CellDiscoveredMax, TimeGame, GameCount, TimeCount)
+                GamersList.Add(gamer)
 
             Next
 
@@ -145,14 +168,30 @@ Public Class Settings
             Dim gamersElement As XmlElement = XmlSettings.CreateElement("Gamers")
             rootElement.AppendChild(gamersElement)
 
-            For Each gamer As String In GamersList
+            For Each gamer As DataGamer In GamersList
 
                 Dim gamerElement As XmlElement = XmlSettings.CreateElement("Gamer")
-                gamerElement.InnerText = gamer
                 gamersElement.AppendChild(gamerElement)
 
-            Next
+                Dim NameElement As XmlElement = XmlSettings.CreateElement("Name")
+                NameElement.InnerText = gamer.name
+                gamerElement.AppendChild(NameElement)
 
+                Dim BestResultElement As XmlElement = XmlSettings.CreateElement("BestResult")
+                BestResultElement.InnerText = gamer.CellDiscoveredMax
+                Dim xmlTimeAttribute As XmlAttribute = XmlSettings.CreateAttribute("Time")
+                xmlTimeAttribute.InnerText = gamer.TimeGame
+                BestResultElement.Attributes.Append(xmlTimeAttribute)
+                gamerElement.AppendChild(BestResultElement)
+
+                Dim GameCountElement As XmlElement = XmlSettings.CreateElement("GameCount")
+                GameCountElement.InnerText = gamer.GameCount
+                gamerElement.AppendChild(GameCountElement)
+
+                Dim TimeCountElement As XmlElement = XmlSettings.CreateElement("TimeCount")
+                TimeCountElement.InnerText = gamer.TimeCount
+                gamerElement.AppendChild(TimeCountElement)
+            Next
 
             XmlSettings.Save(Application.StartupPath & "\Demineur.xml")
 

@@ -192,7 +192,7 @@
     End Sub
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Trace("load Game")
-        LabelGamerName.Text = AppSettings.LastGamer
+        LabelGamerName.Text = AppSettings.CurrentPlayer.Name
         Me.ToolStripMenuItemTrace.Checked = AppSettings.ActiveTrace
         Grid.Enabled = False
         ButtonPlayPause.Enabled = False
@@ -362,6 +362,16 @@
     End Sub
 
     Public Sub EndGame(result As String)
+        If AppSettings.CurrentPlayer.CellDiscoveredMax < CellDiscovered Then
+            AppSettings.CurrentPlayer.CellDiscoveredMax = CellDiscovered
+            AppSettings.CurrentPlayer.TimeGame = LastReveal
+        End If
+        If AppSettings.CurrentPlayer.CellDiscoveredMax = CellDiscovered And AppSettings.CurrentPlayer.TimeGame > LastReveal Then
+            AppSettings.CurrentPlayer.CellDiscoveredMax = CellDiscovered
+            AppSettings.CurrentPlayer.TimeGame = LastReveal
+        End If
+        AppSettings.CurrentPlayer.GameCount += 1
+        AppSettings.CurrentPlayer.TimeCount += (AppSettings.GameTime - Countdown)
         Dim Results As String = ""
         Results += result & vbNewLine & "Nombre de cellules révélées : " & CellDiscovered & " cellules." & vbNewLine
         Results += "Temps jusqu'à la dernière révélation : " & LastReveal & " sec. " & vbNewLine

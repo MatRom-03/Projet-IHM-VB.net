@@ -2,30 +2,33 @@
 Public Class Launcher
 
     Private Sub BtnNewGame_Click(sender As Object, e As EventArgs) Handles BtnNewGame.Click
-        Dim newgamer As String = ComboBoxNameGamer.Text
-        newgamer = newgamer.Trim()
-        If newgamer.Length < 3 Then
+        Dim NewGamer As DataGamer
+        Dim NewGamerName As String = ComboBoxNameGamer.Text
+        NewGamerName = NewGamerName.Trim()
+        If NewGamerName.Length < 3 Then
             Me.ErrorProviderLauncher.SetError(ComboBoxNameGamer, "Nom trop court, il ne doit pas contenir d'espace au début ou à la fin")
             Return
         Else
             Me.ErrorProviderLauncher.Clear()
         End If
         Dim bFound As Boolean = False
-        For Each gamer As String In AppSettings.GamersList
+        For Each gamer As DataGamer In AppSettings.GamersList
 
-            If (String.Compare(gamer, newgamer, True) = 0) Then
+            If (String.Compare(gamer.Name, NewGamerName, True) = 0) Then
                 bFound = True
+                NewGamer = gamer
                 Exit For
             End If
         Next
 
         If (Not bFound) Then
-            AppSettings.GamersList.Add(newgamer)
-            ComboBoxNameGamer.Items.Add(newgamer)
+            NewGamer = New DataGamer(NewGamerName)
+            AppSettings.GamersList.Add(NewGamer)
+            ComboBoxNameGamer.Items.Add(NewGamerName)
         End If
-        Trace("The gamer is : " & newgamer)
-        AppSettings.LastGamer = newgamer
-
+        Trace("The gamer is : " & NewGamerName)
+        AppSettings.LastGamer = NewGamerName
+        AppSettings.CurrentPlayer = NewGamer
         Me.Hide()
         Game.Show()
     End Sub
@@ -65,8 +68,8 @@ Public Class Launcher
         ComboBoxNameGamer.Text = AppSettings.LastGamer
         Me.ToolStripMenuItemTrace.Checked = AppSettings.ActiveTrace
 
-        For Each gamer As String In AppSettings.GamersList
-            ComboBoxNameGamer.Items.Add(gamer)
+        For Each gamer As DataGamer In AppSettings.GamersList
+            ComboBoxNameGamer.Items.Add(gamer.Name)
         Next
 
         Trace("Load Launcher finish")
@@ -95,4 +98,5 @@ Public Class Launcher
     Private Sub BtnStats_Click(sender As Object, e As EventArgs) Handles BtnStats.Click
         Statistics.Show()
     End Sub
+
 End Class
