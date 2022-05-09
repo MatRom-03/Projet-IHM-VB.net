@@ -48,6 +48,7 @@ Partial Class Launcher
         '
         'BtnStats
         '
+        Me.BtnStats.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.BtnStats.Location = New System.Drawing.Point(33, 222)
         Me.BtnStats.Name = "BtnStats"
         Me.BtnStats.Size = New System.Drawing.Size(75, 23)
@@ -57,6 +58,7 @@ Partial Class Launcher
         '
         'BtnNewGame
         '
+        Me.BtnNewGame.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.BtnNewGame.Location = New System.Drawing.Point(120, 222)
         Me.BtnNewGame.Name = "BtnNewGame"
         Me.BtnNewGame.Size = New System.Drawing.Size(111, 23)
@@ -66,6 +68,7 @@ Partial Class Launcher
         '
         'BtnExit
         '
+        Me.BtnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.BtnExit.Location = New System.Drawing.Point(240, 222)
         Me.BtnExit.Name = "BtnExit"
         Me.BtnExit.Size = New System.Drawing.Size(75, 23)
