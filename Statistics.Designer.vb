@@ -25,7 +25,8 @@ Partial Class Statistics
         Me.ListBoxStats = New System.Windows.Forms.ListBox()
         Me.ButtonSort = New System.Windows.Forms.Button()
         Me.ComboBoxNameGamer = New System.Windows.Forms.ComboBox()
-        Me.ButtonSearch = New System.Windows.Forms.Button()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.ExitButton = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'ListBoxStats
@@ -54,32 +55,44 @@ Partial Class Statistics
         Me.ComboBoxNameGamer.Size = New System.Drawing.Size(121, 21)
         Me.ComboBoxNameGamer.TabIndex = 2
         '
-        'ButtonSearch
+        'Label1
         '
-        Me.ButtonSearch.Location = New System.Drawing.Point(299, 171)
-        Me.ButtonSearch.Name = "ButtonSearch"
-        Me.ButtonSearch.Size = New System.Drawing.Size(75, 23)
-        Me.ButtonSearch.TabIndex = 3
-        Me.ButtonSearch.Text = "Détails"
-        Me.ButtonSearch.UseVisualStyleBackColor = True
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(274, 169)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(39, 13)
+        Me.Label1.TabIndex = 3
+        Me.Label1.Text = "Label1"
+        '
+        'ExitButton
+        '
+        Me.ExitButton.Location = New System.Drawing.Point(462, 232)
+        Me.ExitButton.Name = "ExitButton"
+        Me.ExitButton.Size = New System.Drawing.Size(75, 23)
+        Me.ExitButton.TabIndex = 4
+        Me.ExitButton.Text = "Retour"
+        Me.ExitButton.UseVisualStyleBackColor = True
         '
         'Statistics
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(418, 270)
-        Me.Controls.Add(Me.ButtonSearch)
+        Me.ClientSize = New System.Drawing.Size(583, 270)
+        Me.Controls.Add(Me.ExitButton)
+        Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.ComboBoxNameGamer)
         Me.Controls.Add(Me.ButtonSort)
         Me.Controls.Add(Me.ListBoxStats)
         Me.Name = "Statistics"
         Me.Text = "Statistics"
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
 
     Friend WithEvents ListBoxStats As ListBox
     Friend WithEvents ButtonSort As Button
     Friend WithEvents ComboBoxNameGamer As ComboBox
-    Friend WithEvents ButtonSearch As Button
+    Friend WithEvents Label1 As Label
+    Friend WithEvents ExitButton As Button
 End Class

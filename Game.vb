@@ -1,13 +1,15 @@
 ﻿Public Class Game
 
     Dim TabMineCells As New Hashtable
-    Dim Countdown As Integer = AppSettings.GameTime
+    Dim Countdown As Integer
     Dim FlagCount As Integer = AppSettings.MinesCount
     Dim CellDiscovered As Integer = 0
     Dim PlayPause As Boolean = True 'True = play et False = Pause
     Dim LastReveal As Integer = 0
     Private Const Play As Char = "4"
     Private Const Pause As Char = ";"
+    Private Const XbtnPlayPause As Integer = 130
+    Private Const XbtnStart As Integer = 120
     Dim GameEnded As Boolean = False
 
 
@@ -191,13 +193,30 @@
             End If
         End If
     End Sub
+
+    Sub PlayLoopingBackgroundSoundResource()
+        My.Computer.Audio.Play(My.Resources.music1, AudioPlayMode.BackgroundLoop)
+    End Sub
+
+    Sub StopBackgroundSound()
+        My.Computer.Audio.Stop()
+    End Sub
+
+    Private Sub Form1_Resize(sender As Object, e As EventArgs) Handles MyBase.Resize
+        Trace("Width : " & Me.Size.Width & " Height : " & Me.Size.Height)
+    End Sub
+
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Trace("load Game")
-        LabelGamerName.Text = AppSettings.CurrentPlayer.Name
+        ResizeAll()
+        LabelGamerName.Text = AppSettings.CurrentPlayer.name
         Me.ToolStripMenuItemTrace.Checked = AppSettings.ActiveTrace
         Grid.Enabled = False
         ButtonPlayPause.Enabled = False
         ButtonPlayPause.Text = Pause
+        If AppSettings.CountdownEnabled Then
+            Countdown = AppSettings.GameTime
+        End If
         GeneratePanelNumber(3, PanelCountdown)
         GeneratePanelNumber(3, PanelFlagCount)
         PanelNumberSetImage(Countdown, PanelCountdown)
@@ -208,10 +227,29 @@
             Me.Height -= TextBoxTrace.Height
         End If
         ButtonStart.Enabled = True
+        PlayLoopingBackgroundSoundResource()
         Trace("load Game finish")
 
     End Sub
 
+    Private Sub ResizeAll()
+
+        Dim x = 460, y = 550
+        If AppSettings.ColumnsCount > 15 Then
+            x += (AppSettings.ColumnsCount - 15) * MineCell.MineCellWidth
+        End If
+        If AppSettings.LinesCount > 15 Then
+            y += (AppSettings.LinesCount - 15) * MineCell.MineCellWidth
+        End If
+        Me.Size = New Size(x, y)
+        Dim point As Point = New Point((AppSettings.ColumnsCount * MineCell.MineCellWidth) + XbtnStart, ButtonStart.Location.Y)
+        ButtonStart.Location = point
+        point.Y = ButtonGiveUp.Location.Y
+        ButtonGiveUp.Location = point
+        point.X = (AppSettings.ColumnsCount * MineCell.MineCellWidth) + XbtnPlayPause
+        point.Y = ButtonPlayPause.Location.Y
+        ButtonPlayPause.Location = point
+    End Sub
     Private Sub ToolStripMenuItemTrace_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItemTrace.Click
         ToolStripMenuItemTrace.Checked = Not ToolStripMenuItemTrace.Checked
         Launcher.ToolStripMenuItemTrace.Checked = ToolStripMenuItemTrace.Checked
@@ -232,6 +270,8 @@
         If AppSettings.CountdownEnabled Then
             Trace("Start timer")
             TimerGame.Start()
+        Else
+            TimerHide.Start()
         End If
         Grid.Enabled = True
         ButtonPlayPause.Enabled = True
@@ -251,6 +291,9 @@
 
     End Sub
 
+    Private Sub TimerHide_Tick(sender As Object, e As EventArgs) Handles TimerHide.Tick
+        Countdown += 1
+    End Sub
 
     Private Sub GeneratePanelNumber(ColumnsCount As Integer, panel As Panel)
 
@@ -339,27 +382,50 @@
     End Sub
 
     Private Sub BlockGame()
-        TimerGame.Stop()
+        If AppSettings.CountdownEnabled Then
+            TimerHide.Stop()
+        Else
+            TimerGame.Stop()
+        End If
         Grid.Enabled = False
     End Sub
 
     Private Sub ButtonPlayPause_Click(sender As Object, e As EventArgs) Handles ButtonPlayPause.Click
-        If PlayPause Then
-            Trace("The game is paused")
-            BlockGame()
-            ButtonPlayPause.Text = Play
-            PlayPause = Not PlayPause
+        If AppSettings.CountdownEnabled Then
+            If PlayPause Then
+                Trace("The game is paused")
+                BlockGame()
+                ButtonPlayPause.Text = Play
+                PlayPause = Not PlayPause
+            Else
+                Trace("The game resumes")
+                TimerGame.Start()
+                Grid.Enabled = True
+                ButtonPlayPause.Text = Pause
+                PlayPause = Not PlayPause
+            End If
         Else
-            Trace("The game resumes")
-            TimerGame.Start()
-            Grid.Enabled = True
-            ButtonPlayPause.Text = Pause
-            PlayPause = Not PlayPause
+            If PlayPause Then
+                Trace("The game is paused")
+                BlockGame()
+                ButtonPlayPause.Text = Play
+                PlayPause = Not PlayPause
+            Else
+                Trace("The game resumes")
+                TimerHide.Start()
+                Grid.Enabled = True
+                ButtonPlayPause.Text = Pause
+                PlayPause = Not PlayPause
+            End If
         End If
     End Sub
 
     Public Sub LastRevealUpdate()
-        LastReveal = AppSettings.GameTime - Countdown
+        If AppSettings.CountdownEnabled Then
+            LastReveal = AppSettings.GameTime - Countdown
+        Else
+            LastReveal = Countdown
+        End If
     End Sub
 
     Public Sub EndGame(result As String)
@@ -372,11 +438,21 @@
             AppSettings.CurrentPlayer.TimeGame = LastReveal
         End If
         AppSettings.CurrentPlayer.GameCount += 1
-        AppSettings.CurrentPlayer.TimeCount += (AppSettings.GameTime - Countdown)
+        If AppSettings.CountdownEnabled Then
+            AppSettings.CurrentPlayer.TimeCount += (AppSettings.GameTime - Countdown)
+        Else
+            AppSettings.CurrentPlayer.TimeCount += Countdown
+        End If
         Dim Results As String = ""
         Results += result & vbNewLine & "Nombre de cellules révélées : " & CellDiscovered & " cellules." & vbNewLine
         Results += "Temps jusqu'à la dernière révélation : " & LastReveal & " sec. " & vbNewLine
-        Results += "Temps de la partie : " & (AppSettings.GameTime - Countdown) & "sec."
+        Results += "Temps de la partie : "
+        If AppSettings.CountdownEnabled Then
+            Results += (AppSettings.GameTime - Countdown)
+        Else
+            Results += Countdown.ToString
+        End If
+        Results += "sec."
         MsgBox(Results, MsgBoxStyle.OkOnly, "Résultats")
         GameEnded = True
     End Sub
@@ -386,6 +462,7 @@
     End Sub
 
     Private Sub Launcher_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
+        StopBackgroundSound()
         If GameEnded Then
             Return
         End If

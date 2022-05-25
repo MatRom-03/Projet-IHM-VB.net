@@ -41,6 +41,7 @@ Partial Class Game
         Me.ImageListCountdown = New System.Windows.Forms.ImageList(Me.components)
         Me.ButtonGiveUp = New System.Windows.Forms.Button()
         Me.ButtonPlayPause = New System.Windows.Forms.Button()
+        Me.TimerHide = New System.Windows.Forms.Timer(Me.components)
         Me.Panel1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.MenuStrip1.SuspendLayout()
@@ -104,18 +105,20 @@ Partial Class Game
         'labelName
         '
         Me.labelName.AutoSize = True
-        Me.labelName.Location = New System.Drawing.Point(108, 30)
+        Me.labelName.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.labelName.Location = New System.Drawing.Point(101, 28)
         Me.labelName.Name = "labelName"
-        Me.labelName.Size = New System.Drawing.Size(82, 13)
+        Me.labelName.Size = New System.Drawing.Size(95, 15)
         Me.labelName.TabIndex = 8
         Me.labelName.Text = "Nom du joueur :"
         '
         'LabelGamerName
         '
         Me.LabelGamerName.AutoSize = True
+        Me.LabelGamerName.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelGamerName.Location = New System.Drawing.Point(196, 30)
         Me.LabelGamerName.Name = "LabelGamerName"
-        Me.LabelGamerName.Size = New System.Drawing.Size(39, 13)
+        Me.LabelGamerName.Size = New System.Drawing.Size(45, 15)
         Me.LabelGamerName.TabIndex = 7
         Me.LabelGamerName.Text = "Label1"
         '
@@ -129,9 +132,10 @@ Partial Class Game
         '
         'ButtonStart
         '
-        Me.ButtonStart.Location = New System.Drawing.Point(325, 130)
+        Me.ButtonStart.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonStart.Location = New System.Drawing.Point(317, 134)
         Me.ButtonStart.Name = "ButtonStart"
-        Me.ButtonStart.Size = New System.Drawing.Size(59, 23)
+        Me.ButtonStart.Size = New System.Drawing.Size(67, 25)
         Me.ButtonStart.TabIndex = 3
         Me.ButtonStart.Text = "Start"
         Me.ButtonStart.UseVisualStyleBackColor = True
@@ -191,11 +195,12 @@ Partial Class Game
         '
         'ButtonGiveUp
         '
-        Me.ButtonGiveUp.Location = New System.Drawing.Point(325, 237)
+        Me.ButtonGiveUp.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonGiveUp.Location = New System.Drawing.Point(317, 237)
         Me.ButtonGiveUp.Name = "ButtonGiveUp"
-        Me.ButtonGiveUp.Size = New System.Drawing.Size(59, 23)
+        Me.ButtonGiveUp.Size = New System.Drawing.Size(67, 26)
         Me.ButtonGiveUp.TabIndex = 7
-        Me.ButtonGiveUp.Text = "Abandonner"
+        Me.ButtonGiveUp.Text = "Abandon"
         Me.ButtonGiveUp.UseVisualStyleBackColor = True
         '
         'ButtonPlayPause
@@ -208,6 +213,10 @@ Partial Class Game
         Me.ButtonPlayPause.TabIndex = 8
         Me.ButtonPlayPause.Text = ";"
         Me.ButtonPlayPause.UseVisualStyleBackColor = True
+        '
+        'TimerHide
+        '
+        Me.TimerHide.Interval = 1000
         '
         'Game
         '
@@ -252,4 +261,5 @@ Partial Class Game
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents ButtonGiveUp As Button
     Friend WithEvents ButtonPlayPause As Button
+    Friend WithEvents TimerHide As Timer
 End Class

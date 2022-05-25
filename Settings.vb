@@ -1,5 +1,9 @@
 ﻿Imports System.Xml
+
 Public Class Settings
+
+    Private Const MAX_VALUE_COLUMN_LINE As Integer = 20
+    Public FileNameXML As String = "Demineur.xml"
     Public XmlSettings As XmlDocument = New XmlDocument()
     Public ActiveTrace As Boolean
     Public LastGamer As String
@@ -47,7 +51,11 @@ Public Class Settings
             NodesList = XmlSettings.GetElementsByTagName("ColumnsCount")
             For Each Node As XmlNode In NodesList
 
-                ColumnsCount = Node.InnerText
+                If Node.InnerText <= MAX_VALUE_COLUMN_LINE Then
+                    ColumnsCount = Node.InnerText
+                Else
+                    TraceFile("The number of columns is too high, the default value has been applied")
+                End If
                 Exit For
 
             Next
@@ -55,7 +63,11 @@ Public Class Settings
             NodesList = XmlSettings.GetElementsByTagName("LinesCount")
             For Each Node As XmlNode In NodesList
 
-                LinesCount = Node.InnerText
+                If Node.InnerText <= MAX_VALUE_COLUMN_LINE Then
+                    LinesCount = Node.InnerText
+                Else
+                    TraceFile("The number of lines is too high, the default value has been applied")
+                End If
                 Exit For
 
             Next

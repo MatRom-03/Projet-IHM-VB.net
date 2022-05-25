@@ -1,10 +1,10 @@
 ﻿Public Class Statistics
 
-    Dim LastSelection As String
     Private Sub Statistics_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         AppSettings.GamersList.Sort(AddressOf DataGamer.CompareByCellDiscoveredMaxAscending)
         DisplayList()
 
+        FoundGamer(AppSettings.LastGamer)
         ComboBoxNameGamer.Text = AppSettings.LastGamer
         For Each gamer As DataGamer In AppSettings.GamersList
             ComboBoxNameGamer.Items.Add(gamer.name)
@@ -31,7 +31,7 @@
     End Sub
 
     Private Sub ComboBoxNameGamer_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBoxNameGamer.SelectedIndexChanged
-        LastSelection = ComboBoxNameGamer.Text
+        FoundGamer(ComboBoxNameGamer.Text)
     End Sub
 
     Private Sub UpdateDataGamer(Gamer As DataGamer)
@@ -40,11 +40,11 @@
         Stats += "Meilleur nombre de cases révélées : " & Gamer.CellDiscoveredMax & " cases en " & Gamer.TimeGame & " sec." & vbNewLine
         Stats += "Temps de parties cumulés : " & Gamer.TimeCount & " sec." & vbNewLine
         Stats += "Nombre de parties : " & Gamer.GameCount & " parties." & vbNewLine
-        MsgBox(Stats, MsgBoxStyle.OkOnly, "Statistiques")
+        Label1.Text = Stats
     End Sub
 
     Private Sub ListBoxStats_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBoxStats.SelectedIndexChanged
-        LastSelection = ListBoxStats.Text.Split(",")(0)
+        FoundGamer(ListBoxStats.Text.Split(",")(0))
     End Sub
 
     Private Sub FoundGamer(GamerName As String)
@@ -65,7 +65,7 @@
         UpdateDataGamer(ChosenGamer)
     End Sub
 
-    Private Sub ButtonSearch_Click(sender As Object, e As EventArgs) Handles ButtonSearch.Click
-        FoundGamer(LastSelection)
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles ExitButton.Click
+        Me.Close()
     End Sub
 End Class

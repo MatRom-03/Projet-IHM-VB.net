@@ -171,6 +171,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Recherche une ressource localisée de type System.IO.UnmanagedMemoryStream semblable à System.IO.MemoryStream.
+        '''</summary>
+        Friend ReadOnly Property music1() As System.IO.UnmanagedMemoryStream
+            Get
+                Return ResourceManager.GetStream("music1", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Recherche une ressource localisée de type System.Drawing.Bitmap.
         '''</summary>
         Friend ReadOnly Property vide() As System.Drawing.Bitmap

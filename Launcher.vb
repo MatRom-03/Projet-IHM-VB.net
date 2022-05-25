@@ -14,7 +14,7 @@ Public Class Launcher
         Dim bFound As Boolean = False
         For Each gamer As DataGamer In AppSettings.GamersList
 
-            If (String.Compare(gamer.Name, NewGamerName, True) = 0) Then
+            If (String.Compare(gamer.name, NewGamerName, False) = 0) Then
                 bFound = True
                 NewGamer = gamer
                 Exit For
@@ -65,7 +65,7 @@ Public Class Launcher
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Trace("Load Launcher")
-        SetTheme()
+        'SetTheme()
         ComboBoxNameGamer.Text = AppSettings.LastGamer
         Me.ToolStripMenuItemTrace.Checked = AppSettings.ActiveTrace
 

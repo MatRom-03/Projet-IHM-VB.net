@@ -1,6 +1,7 @@
 ﻿Public Class FormSettings
 
     Dim ValidatedChange As Boolean = False
+    Private Const MAX_VALUE_COLUMN_LINE As Integer = 20
     Private Sub FormSettings_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         TextBoxPathXml.Text = AppSettings.StoragePathXMLFile
         TextBoxColumnsCount.Text = AppSettings.ColumnsCount
@@ -18,9 +19,17 @@
             Me.ErrorProviderSettings.SetError(TextBoxColumnsCount, "Valeur incorrecte.")
             Return
         End If
+        If ColumnsCount > MAX_VALUE_COLUMN_LINE Then
+            Me.ErrorProviderSettings.SetError(TextBoxColumnsCount, "Valeur trop grande, la valeur max est 20")
+            Return
+        End If
         Dim LinesCount As Integer
         If Not Integer.TryParse(TextBoxLinesCount.Text, LinesCount) Then
             Me.ErrorProviderSettings.SetError(TextBoxLinesCount, "Valeur incorrecte.")
+            Return
+        End If
+        If LinesCount > MAX_VALUE_COLUMN_LINE Then
+            Me.ErrorProviderSettings.SetError(TextBoxLinesCount, "Valeur trop grande, la valeur max est 20")
             Return
         End If
         Dim MinesCount As Integer

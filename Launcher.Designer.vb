@@ -40,18 +40,20 @@ Partial Class Launcher
         '
         'ComboBoxNameGamer
         '
+        Me.ComboBoxNameGamer.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ComboBoxNameGamer.FormattingEnabled = True
         Me.ComboBoxNameGamer.Location = New System.Drawing.Point(154, 107)
         Me.ComboBoxNameGamer.Name = "ComboBoxNameGamer"
-        Me.ComboBoxNameGamer.Size = New System.Drawing.Size(121, 21)
+        Me.ComboBoxNameGamer.Size = New System.Drawing.Size(121, 23)
         Me.ComboBoxNameGamer.TabIndex = 0
         '
         'BtnStats
         '
         Me.BtnStats.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.BtnStats.Location = New System.Drawing.Point(33, 222)
+        Me.BtnStats.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnStats.Location = New System.Drawing.Point(26, 222)
         Me.BtnStats.Name = "BtnStats"
-        Me.BtnStats.Size = New System.Drawing.Size(75, 23)
+        Me.BtnStats.Size = New System.Drawing.Size(82, 30)
         Me.BtnStats.TabIndex = 1
         Me.BtnStats.Text = "Statistiques"
         Me.BtnStats.UseVisualStyleBackColor = True
@@ -59,9 +61,10 @@ Partial Class Launcher
         'BtnNewGame
         '
         Me.BtnNewGame.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.BtnNewGame.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnNewGame.Location = New System.Drawing.Point(120, 222)
         Me.BtnNewGame.Name = "BtnNewGame"
-        Me.BtnNewGame.Size = New System.Drawing.Size(111, 23)
+        Me.BtnNewGame.Size = New System.Drawing.Size(111, 30)
         Me.BtnNewGame.TabIndex = 2
         Me.BtnNewGame.Text = "Nouvelle Partie"
         Me.BtnNewGame.UseVisualStyleBackColor = True
@@ -69,9 +72,10 @@ Partial Class Launcher
         'BtnExit
         '
         Me.BtnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.BtnExit.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnExit.Location = New System.Drawing.Point(240, 222)
         Me.BtnExit.Name = "BtnExit"
-        Me.BtnExit.Size = New System.Drawing.Size(75, 23)
+        Me.BtnExit.Size = New System.Drawing.Size(75, 30)
         Me.BtnExit.TabIndex = 3
         Me.BtnExit.Text = "Quitter"
         Me.BtnExit.UseVisualStyleBackColor = True
@@ -79,9 +83,10 @@ Partial Class Launcher
         'LabelNameGamer
         '
         Me.LabelNameGamer.AutoSize = True
-        Me.LabelNameGamer.Location = New System.Drawing.Point(66, 110)
+        Me.LabelNameGamer.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelNameGamer.Location = New System.Drawing.Point(56, 110)
         Me.LabelNameGamer.Name = "LabelNameGamer"
-        Me.LabelNameGamer.Size = New System.Drawing.Size(82, 13)
+        Me.LabelNameGamer.Size = New System.Drawing.Size(95, 15)
         Me.LabelNameGamer.TabIndex = 4
         Me.LabelNameGamer.Text = "Nom du joueur :"
         '

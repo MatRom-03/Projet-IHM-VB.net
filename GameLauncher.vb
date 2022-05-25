@@ -1,4 +1,7 @@
-﻿Module GameLauncher
+﻿Imports System.IO
+Imports System.Security.Cryptography
+
+Module GameLauncher
     Public AppSettings As Settings = New Settings
     Public Sub Main()
         AppSettings.Load()
