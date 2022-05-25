@@ -39,6 +39,7 @@ Partial Class Statistics
         '
         'ButtonSort
         '
+        Me.ButtonSort.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonSort.Font = New System.Drawing.Font("Arial", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButtonSort.Location = New System.Drawing.Point(277, 37)
         Me.ButtonSort.Name = "ButtonSort"
@@ -66,6 +67,7 @@ Partial Class Statistics
         '
         'ExitButton
         '
+        Me.ExitButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ExitButton.Location = New System.Drawing.Point(462, 232)
         Me.ExitButton.Name = "ExitButton"
         Me.ExitButton.Size = New System.Drawing.Size(75, 23)
@@ -83,7 +85,9 @@ Partial Class Statistics
         Me.Controls.Add(Me.ComboBoxNameGamer)
         Me.Controls.Add(Me.ButtonSort)
         Me.Controls.Add(Me.ListBoxStats)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Name = "Statistics"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Statistics"
         Me.ResumeLayout(False)
         Me.PerformLayout()

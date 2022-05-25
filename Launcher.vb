@@ -65,7 +65,11 @@ Public Class Launcher
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Trace("Load Launcher")
-        'SetTheme()
+        If AppSettings.Darkmode Then
+            GameLauncher.SetThemeDark(Me)
+        Else
+            GameLauncher.SetThemeWhite(Me)
+        End If
         ComboBoxNameGamer.Text = AppSettings.LastGamer
         Me.ToolStripMenuItemTrace.Checked = AppSettings.ActiveTrace
 
@@ -102,17 +106,6 @@ Public Class Launcher
         If MsgBox("Etes-vous sûr de quitter le jeu ?", MsgBoxStyle.YesNo, "Exit Game") = MsgBoxResult.No Then
             e.Cancel = True
         End If
-    End Sub
-
-    Private Sub SetTheme()
-        Me.BackColor = Color.Black
-        BtnNewGame.ForeColor = Color.Blue
-        BtnExit.ForeColor = Color.Red
-        BtnStats.ForeColor = Color.Green
-        LabelNameGamer.ForeColor = Color.White
-        MenuStrip1.BackColor = Color.Gray
-        ComboBoxNameGamer.BackColor = Color.DarkGray
-
     End Sub
 
 End Class

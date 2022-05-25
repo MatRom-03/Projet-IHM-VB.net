@@ -39,6 +39,8 @@ Partial Class FormSettings
         Me.FolderBrowserDialogPathXml = New System.Windows.Forms.FolderBrowserDialog()
         Me.TextBoxPathXml = New System.Windows.Forms.TextBox()
         Me.ButtonModifyPath = New System.Windows.Forms.Button()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.ComboBoxTheme = New System.Windows.Forms.ComboBox()
         CType(Me.ErrorProviderSettings, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -71,7 +73,8 @@ Partial Class FormSettings
         '
         'ButtonValidate
         '
-        Me.ButtonValidate.Location = New System.Drawing.Point(181, 246)
+        Me.ButtonValidate.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonValidate.Location = New System.Drawing.Point(181, 273)
         Me.ButtonValidate.Name = "ButtonValidate"
         Me.ButtonValidate.Size = New System.Drawing.Size(75, 23)
         Me.ButtonValidate.TabIndex = 3
@@ -102,7 +105,8 @@ Partial Class FormSettings
         'ButtonCancel
         '
         Me.ButtonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.ButtonCancel.Location = New System.Drawing.Point(42, 246)
+        Me.ButtonCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonCancel.Location = New System.Drawing.Point(42, 273)
         Me.ButtonCancel.Name = "ButtonCancel"
         Me.ButtonCancel.Size = New System.Drawing.Size(75, 23)
         Me.ButtonCancel.TabIndex = 8
@@ -115,7 +119,7 @@ Partial Class FormSettings
         '
         'TextBoxCountdown
         '
-        Me.TextBoxCountdown.Location = New System.Drawing.Point(156, 154)
+        Me.TextBoxCountdown.Location = New System.Drawing.Point(156, 181)
         Me.TextBoxCountdown.Name = "TextBoxCountdown"
         Me.TextBoxCountdown.Size = New System.Drawing.Size(100, 20)
         Me.TextBoxCountdown.TabIndex = 10
@@ -123,7 +127,7 @@ Partial Class FormSettings
         'LabelGameTime
         '
         Me.LabelGameTime.AutoSize = True
-        Me.LabelGameTime.Location = New System.Drawing.Point(57, 157)
+        Me.LabelGameTime.Location = New System.Drawing.Point(57, 184)
         Me.LabelGameTime.Name = "LabelGameTime"
         Me.LabelGameTime.Size = New System.Drawing.Size(77, 13)
         Me.LabelGameTime.TabIndex = 9
@@ -132,7 +136,7 @@ Partial Class FormSettings
         'CheckBoxCountdown
         '
         Me.CheckBoxCountdown.AutoSize = True
-        Me.CheckBoxCountdown.Location = New System.Drawing.Point(42, 125)
+        Me.CheckBoxCountdown.Location = New System.Drawing.Point(42, 152)
         Me.CheckBoxCountdown.Name = "CheckBoxCountdown"
         Me.CheckBoxCountdown.Size = New System.Drawing.Size(117, 17)
         Me.CheckBoxCountdown.TabIndex = 11
@@ -142,7 +146,7 @@ Partial Class FormSettings
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(42, 188)
+        Me.Label1.Location = New System.Drawing.Point(42, 215)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(197, 13)
         Me.Label1.TabIndex = 12
@@ -152,19 +156,37 @@ Partial Class FormSettings
         '
         Me.TextBoxPathXml.Enabled = False
         Me.TextBoxPathXml.Font = New System.Drawing.Font("Consolas", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxPathXml.Location = New System.Drawing.Point(60, 211)
+        Me.TextBoxPathXml.Location = New System.Drawing.Point(60, 238)
         Me.TextBoxPathXml.Name = "TextBoxPathXml"
         Me.TextBoxPathXml.Size = New System.Drawing.Size(266, 20)
         Me.TextBoxPathXml.TabIndex = 13
         '
         'ButtonModifyPath
         '
-        Me.ButtonModifyPath.Location = New System.Drawing.Point(258, 183)
+        Me.ButtonModifyPath.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonModifyPath.Location = New System.Drawing.Point(258, 210)
         Me.ButtonModifyPath.Name = "ButtonModifyPath"
         Me.ButtonModifyPath.Size = New System.Drawing.Size(68, 22)
         Me.ButtonModifyPath.TabIndex = 14
         Me.ButtonModifyPath.Text = "Modifier"
         Me.ButtonModifyPath.UseVisualStyleBackColor = True
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(42, 133)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(46, 13)
+        Me.Label2.TabIndex = 15
+        Me.Label2.Text = "Thème :"
+        '
+        'ComboBoxTheme
+        '
+        Me.ComboBoxTheme.FormattingEnabled = True
+        Me.ComboBoxTheme.Location = New System.Drawing.Point(156, 133)
+        Me.ComboBoxTheme.Name = "ComboBoxTheme"
+        Me.ComboBoxTheme.Size = New System.Drawing.Size(121, 21)
+        Me.ComboBoxTheme.TabIndex = 16
         '
         'FormSettings
         '
@@ -173,7 +195,9 @@ Partial Class FormSettings
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.AppWorkspace
         Me.CancelButton = Me.ButtonCancel
-        Me.ClientSize = New System.Drawing.Size(377, 289)
+        Me.ClientSize = New System.Drawing.Size(377, 314)
+        Me.Controls.Add(Me.ComboBoxTheme)
+        Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.ButtonModifyPath)
         Me.Controls.Add(Me.TextBoxPathXml)
         Me.Controls.Add(Me.Label1)
@@ -188,7 +212,9 @@ Partial Class FormSettings
         Me.Controls.Add(Me.LabelMinesCount)
         Me.Controls.Add(Me.LabelLinesCount)
         Me.Controls.Add(Me.LabelColumnsCount)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Name = "FormSettings"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Settings"
         CType(Me.ErrorProviderSettings, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
@@ -212,4 +238,6 @@ Partial Class FormSettings
     Friend WithEvents TextBoxPathXml As TextBox
     Friend WithEvents Label1 As Label
     Friend WithEvents FolderBrowserDialogPathXml As FolderBrowserDialog
+    Friend WithEvents ComboBoxTheme As ComboBox
+    Friend WithEvents Label2 As Label
 End Class

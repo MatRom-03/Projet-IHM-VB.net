@@ -8,6 +8,23 @@ Module GameLauncher
         Application.Run(Launcher)
         AppSettings.save()
     End Sub
+
+    Public Sub SetThemeDark(Form As Form)
+        Form.BackColor = Color.Black
+        For Each comp As Control In Form.Controls
+            comp.ForeColor = Color.FromArgb(61, 170, 255)
+            comp.BackColor = Color.Black
+        Next
+    End Sub
+
+    Public Sub SetThemeWhite(Form As Form)
+        Form.BackColor = System.Drawing.SystemColors.AppWorkspace
+        For Each comp As Control In Form.Controls
+            comp.ForeColor = Color.Black
+            comp.BackColor = System.Drawing.SystemColors.AppWorkspace
+        Next
+    End Sub
+
     Public Function TraceFile(TheTrace As String)
 
         Dim TraceDate As Date = Date.Now

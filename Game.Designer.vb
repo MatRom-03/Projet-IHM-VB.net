@@ -116,7 +116,7 @@ Partial Class Game
         '
         Me.LabelGamerName.AutoSize = True
         Me.LabelGamerName.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelGamerName.Location = New System.Drawing.Point(196, 30)
+        Me.LabelGamerName.Location = New System.Drawing.Point(202, 28)
         Me.LabelGamerName.Name = "LabelGamerName"
         Me.LabelGamerName.Size = New System.Drawing.Size(45, 15)
         Me.LabelGamerName.TabIndex = 7
@@ -132,6 +132,7 @@ Partial Class Game
         '
         'ButtonStart
         '
+        Me.ButtonStart.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonStart.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButtonStart.Location = New System.Drawing.Point(317, 134)
         Me.ButtonStart.Name = "ButtonStart"
@@ -195,6 +196,7 @@ Partial Class Game
         '
         'ButtonGiveUp
         '
+        Me.ButtonGiveUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonGiveUp.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButtonGiveUp.Location = New System.Drawing.Point(317, 237)
         Me.ButtonGiveUp.Name = "ButtonGiveUp"
@@ -206,6 +208,7 @@ Partial Class Game
         'ButtonPlayPause
         '
         Me.ButtonPlayPause.Enabled = False
+        Me.ButtonPlayPause.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ButtonPlayPause.Font = New System.Drawing.Font("Webdings", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(2, Byte))
         Me.ButtonPlayPause.Location = New System.Drawing.Point(334, 175)
         Me.ButtonPlayPause.Name = "ButtonPlayPause"
@@ -233,6 +236,7 @@ Partial Class Game
         Me.Controls.Add(Me.ButtonStart)
         Me.MainMenuStrip = Me.MenuStrip1
         Me.Name = "Game"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Minesweeper"
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()

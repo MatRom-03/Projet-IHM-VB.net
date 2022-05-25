@@ -39,32 +39,32 @@
             Game.Trace("Clic droit (" & PosX & "," & PosY & ")")
             If isFlag Then
                 Me.BackgroundImage = Me.ImageListPictures.Images(MineStates.BeginCell)
-                Game.FlagNotUsed()
+                GameFunction.FlagNotUsed()
                 isFlag = False
             Else
-                If Not Game.FlagUsed() Then
+                If Not GameFunction.FlagUsed() Then
                     Me.BackgroundImage = Me.ImageListPictures.Images(MineStates.FlagImageCell)
                     isFlag = True
-                    Game.GameWon()
+                    GameFunction.GameWon()
                 End If
             End If
         ElseIf e.Button = MouseButtons.Left And Not decouvert Then
             Game.Trace("Clic gauche (" & PosX & "," & PosY & ")")
             decovery()
-            Game.LastRevealUpdate()
+            GameFunction.LastRevealUpdate()
             If value = MineStates.DefaultCellDiscovered Then
                 If isFlag Then
-                    Game.FlagNotUsed()
+                    GameFunction.FlagNotUsed()
                     isFlag = False
                 End If
-                Game.Discover(Me)
+                GameFunction.Discover(Me)
             End If
             If value = MineStates.BombCell Then
                 If isFlag Then
-                    Game.FlagNotUsed()
+                    GameFunction.FlagNotUsed()
                     isFlag = False
                 End If
-                Game.GameOver()
+                GameFunction.GameOver()
             End If
         End If
 
@@ -74,11 +74,11 @@
         Me.BackgroundImage = Me.ImageListPictures.Images(Me.value)
         decouvert = True
         If isFlag Then
-            Game.FlagNotUsed()
+            GameFunction.FlagNotUsed()
             isFlag = False
         End If
         If Not value = MineStates.BombCell Then
-            Game.CellDiscoveredCount()
+            GameFunction.CellDiscoveredCount()
         End If
     End Sub
 

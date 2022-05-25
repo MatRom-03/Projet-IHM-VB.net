@@ -80,6 +80,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="DataGamer.vb" />
+    <Compile Include="GameFunction.vb" />
     <Compile Include="INIFileAccess.vb" />
     <Compile Include="Settings.vb" />
     <Compile Include="Statistics.Designer.vb">

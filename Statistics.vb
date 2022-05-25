@@ -3,7 +3,11 @@
     Private Sub Statistics_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         AppSettings.GamersList.Sort(AddressOf DataGamer.CompareByCellDiscoveredMaxAscending)
         DisplayList()
-
+        If AppSettings.Darkmode Then
+            GameLauncher.SetThemeDark(Me)
+        Else
+            GameLauncher.SetThemeWhite(Me)
+        End If
         FoundGamer(AppSettings.LastGamer)
         ComboBoxNameGamer.Text = AppSettings.LastGamer
         For Each gamer As DataGamer In AppSettings.GamersList

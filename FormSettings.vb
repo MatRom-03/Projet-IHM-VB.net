@@ -3,6 +3,18 @@
     Dim ValidatedChange As Boolean = False
     Private Const MAX_VALUE_COLUMN_LINE As Integer = 20
     Private Sub FormSettings_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        If AppSettings.Darkmode Then
+            GameLauncher.SetThemeDark(Me)
+        Else
+            GameLauncher.SetThemeWhite(Me)
+        End If
+        If AppSettings.Darkmode Then
+            ComboBoxTheme.Text = "Dark"
+        Else
+            ComboBoxTheme.Text = "White"
+        End If
+        ComboBoxTheme.Items.Add("Dark")
+        ComboBoxTheme.Items.Add("White")
         TextBoxPathXml.Text = AppSettings.StoragePathXMLFile
         TextBoxColumnsCount.Text = AppSettings.ColumnsCount
         TextBoxLinesCount.Text = AppSettings.LinesCount
@@ -59,6 +71,13 @@
         TraceFile("MinesCount setting set to : " & MinesCount)
         AppSettings.GameTime = Countdown
         TraceFile("GameTime setting set to : " & Countdown)
+        If ComboBoxTheme.Text = "Dark" Then
+            AppSettings.Darkmode = True
+            GameLauncher.SetThemeDark(Launcher)
+        Else
+            AppSettings.Darkmode = False
+            GameLauncher.SetThemeWhite(Launcher)
+        End If
         AppSettings.CountdownEnabled = CheckBoxCountdown.Checked
         TraceFile("CountdownEnabled setting set to : " & CheckBoxCountdown.Checked)
         AppSettings.StoragePathXMLFile = TextBoxPathXml.Text

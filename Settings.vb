@@ -15,6 +15,7 @@ Public Class Settings
     Public GameTime As Integer = 60
     Public CountdownEnabled As Boolean = True
     Public StoragePathXMLFile As String = Application.StartupPath
+    Public Darkmode As Boolean = False
 
 
 
@@ -98,6 +99,16 @@ Public Class Settings
 
             Next
 
+            NodesList = XmlSettings.GetElementsByTagName("DarkMode")
+            For Each Node As XmlNode In NodesList
+
+                If (Not Boolean.TryParse(Node.InnerText, Darkmode)) Then
+                    Darkmode = False
+                End If
+                Exit For
+
+            Next
+
 
             NodesList = XmlSettings.GetElementsByTagName("Gamer")
             For Each Node As XmlNode In NodesList
@@ -176,6 +187,10 @@ Public Class Settings
             Dim MinesCountElement As XmlElement = XmlSettings.CreateElement("MinesCount")
             MinesCountElement.InnerText = MinesCount
             rootElement.AppendChild(MinesCountElement)
+
+            Dim DarkModeElement As XmlElement = XmlSettings.CreateElement("DarkMode")
+            DarkModeElement.InnerText = Darkmode
+            rootElement.AppendChild(DarkModeElement)
 
             Dim CountdownEnabledElement As XmlElement = XmlSettings.CreateElement("CountdownEnabled")
             CountdownEnabledElement.InnerText = CountdownEnabled

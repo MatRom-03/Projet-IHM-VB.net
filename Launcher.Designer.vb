@@ -40,6 +40,7 @@ Partial Class Launcher
         '
         'ComboBoxNameGamer
         '
+        Me.ComboBoxNameGamer.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ComboBoxNameGamer.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ComboBoxNameGamer.FormattingEnabled = True
         Me.ComboBoxNameGamer.Location = New System.Drawing.Point(154, 107)
@@ -147,7 +148,9 @@ Partial Class Launcher
         Me.Controls.Add(Me.BtnNewGame)
         Me.Controls.Add(Me.BtnStats)
         Me.Controls.Add(Me.ComboBoxNameGamer)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Name = "Launcher"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Launcher"
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
