@@ -23,6 +23,7 @@ Partial Class FormSettings
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormSettings))
         Me.LabelColumnsCount = New System.Windows.Forms.Label()
         Me.LabelLinesCount = New System.Windows.Forms.Label()
         Me.LabelMinesCount = New System.Windows.Forms.Label()
@@ -213,9 +214,10 @@ Partial Class FormSettings
         Me.Controls.Add(Me.LabelLinesCount)
         Me.Controls.Add(Me.LabelColumnsCount)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "FormSettings"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Settings"
+        Me.Text = "Paramètres"
         CType(Me.ErrorProviderSettings, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()

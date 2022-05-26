@@ -72,4 +72,8 @@
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles ExitButton.Click
         Me.Close()
     End Sub
+
+    Private Sub Statistics_Closed(sender As Object, e As EventArgs) Handles MyBase.Closed
+        Launcher.Show()
+    End Sub
 End Class

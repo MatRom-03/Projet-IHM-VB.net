@@ -23,6 +23,7 @@ Partial Class Launcher
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Launcher))
         Me.ComboBoxNameGamer = New System.Windows.Forms.ComboBox()
         Me.BtnStats = New System.Windows.Forms.Button()
         Me.BtnNewGame = New System.Windows.Forms.Button()
@@ -149,9 +150,10 @@ Partial Class Launcher
         Me.Controls.Add(Me.BtnStats)
         Me.Controls.Add(Me.ComboBoxNameGamer)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "Launcher"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Launcher"
+        Me.Text = "Démineur"
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
         CType(Me.ErrorProviderLauncher, System.ComponentModel.ISupportInitialize).EndInit()

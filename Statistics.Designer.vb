@@ -22,6 +22,7 @@ Partial Class Statistics
     'Ne la modifiez pas à l'aide de l'éditeur de code.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Statistics))
         Me.ListBoxStats = New System.Windows.Forms.ListBox()
         Me.ButtonSort = New System.Windows.Forms.Button()
         Me.ComboBoxNameGamer = New System.Windows.Forms.ComboBox()
@@ -86,9 +87,10 @@ Partial Class Statistics
         Me.Controls.Add(Me.ButtonSort)
         Me.Controls.Add(Me.ListBoxStats)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "Statistics"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Statistics"
+        Me.Text = "Statistiques"
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

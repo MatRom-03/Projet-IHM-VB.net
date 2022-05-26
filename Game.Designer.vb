@@ -234,10 +234,12 @@ Partial Class Game
         Me.Controls.Add(Me.Grid)
         Me.Controls.Add(Me.MenuStrip1)
         Me.Controls.Add(Me.ButtonStart)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MainMenuStrip = Me.MenuStrip1
         Me.Name = "Game"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Minesweeper"
+        Me.Text = "Démineur"
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()

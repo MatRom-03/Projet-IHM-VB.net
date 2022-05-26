@@ -120,6 +120,83 @@
   <metadata name="ErrorProviderSettings.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        AAABAAEAICAAAAEAIACoEAAAFgAAACgAAAAgAAAAQAAAAAEAIAAAAAAAABAAABMLAAATCwAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAACOjo4Ajo6OAI6OjgCOjo4Ajo6OAI6OjgAAAAAAjo6OAI6OjgGOjo4AjY2NB46O
+        jtOOjo79jo6O+Y6OjuWOjo4Vjo6OAI6OjgGOjo4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAjY2NAI6OjgCOjo4Ajo6OAo6OjgSOjo4Bjo6OAI6OjgCOjo4Ajo6OA46O
+        jgCOjo5Djo6O/46Ojv2Ojo78jo6O/46OjliOjo4Ajo6OA46OjgCOjo4Ajo6OAI6OjgCOjo4Djo6OAo6O
+        jgCOjo4Ajo6OAAAAAAAAAAAAAAAAAI6OjgCOjo4Ajo6OAI6OjgKOjo4Bjo6OAI6OjgGOjo4Ejo6OAI2N
+        jQCOjo4Ejo6OAI6OjpWOjo7/jo6O+46OjvuOjo7/jo6Opo6OjgCOjo4Djo6OAIyMjACOjo4Djo6OAo6O
+        jgCOjo4Bjo6OAo6OjgCOjo4Ajo6OAAAAAAB/f38Ajo6OAI6OjgCOjo4Djo6OAI6OjjuOjo5pjY2NBo6O
+        jgCOjo4Cjo6OBI6OjgKNjY0Ejo6O1o6Ojv+Ojo79jo6O/Y6Ojv+Ojo7ejo6OCY+PjwGOjo4Ejo6OA5yc
+        nACOjo4Ajo6OQo6OjjCOjo4Ajo6OA46OjgCOjo4Aj4+PAAAAAACNjY0Ajo6OAo6OjgCOjo4zjo6O7I6O
+        jv+Ojo7cjo6OXIuLiwGOjo4Cjo6OAI6OjjKOjo7/jo6O/46Ojv+Ojo7/jo6O/46Ojv+Ojo42jo6OAI6O
+        jgOPj48Ajo6OPo6Ojr6Ojo7/jo6O6I6Oji6Ojo4Ajo6OAo6OjgAAAAAAf39/AI6OjgKOjo4Ajo6OMI6O
+        juyOjo7/jo6O+o6Ojv6Ojo7/jo6Owo6OjkGOjo45jo6Oyo6Ojv+Ojo79jo6O/46Ojv+Ojo79jo6O/46O
+        jsuOjo43jo6OM46OjqyOjo7/jo6O/46OjvuOjo7/jo6O6I6OjjGOjo4Ajo6OAo+PjwB/f38Ajo6OA46O
+        jgCOjo5Kjo6O/46OjvuOjo7/jo6O/Y6OjvyOjo7/jo6O/46Ojv+Ojo7+jo6O+46OjvuOjo78jo6O/I6O
+        jvuOjo78jo6O/o6Ojv+Ojo7/jo6O/46Ojv2Ojo78jo6O/46OjvqOjo7/jo6OZI6OjgCOjo4Ej4+PAAAA
+        AACOjo4Aj4+PAY+PjwCOjo7Bjo6O/46OjvyOjo7/jo6O/46OjvyOjo79jo6O+o6OjvyOjo7/jo6O/46O
+        jv+Ojo7/jo6O/46Ojv+Ojo77jo6O+46Ojv6Ojo78jo6O/46Ojv+Ojo79jo6O/46OjtaOjo4Hjo6OAI6O
+        jgEAAAAAf39/AI6OjgCOjo4Djo6OAI6OjkyOjo7/jo6O/Y6Ojv+Ojo7/jo6O/46OjvyOjo7/jo6O+I6O
+        jrOOjo5wjo6OUo6OjlCOjo5yjo6OuY6OjvqOjo7/jo6O/I6Ojv+Ojo7/jo6O/46OjvyOjo7/jo6OX46O
+        jgCOjo4Djo6OAI+PjwAAAAAAjo6OAI6OjgCOjo4Cjo6OAI6OjrOOjo7/jo6O/I6Ojv+Ojo78jo6O/46O
+        jraOjo4kjo6OAI6OjgGOjo4AjY2NAI6OjgGOjo4Ajo6OLY6OjsOOjo7/jo6O/I6Ojv+Ojo78jo6O/46O
+        jr6Pj48Ajo6OAY6OjgCOjo4AAAAAAI6OjgCNjY0Ajo6OAI6OjgSOjo4Ajo6OQY6Ojv+Ojo79jo6O/I6O
+        jv+Ojo6Oj4+PAI+PjwGOjo4Djo6OBI6OjgOOjo4Djo6OBI6OjgOMjIwAioqKAI6OjqGOjo7/jo6O/I6O
+        jv2Ojo7/jo6ORY6OjgCOjo4Djo6OAI6OjgCOjo4Ajo6OAY6OjgSOjo4Djo6OA46OjgCOjo5Fjo6O/46O
+        jvqOjo7/jo6OrI6OjgCOjo4Djo6OA46OjgCOjo4Ajo6OAI6OjgCTk5MAlZWVAI6OjgOPj48BjIyMAo6O
+        jsGOjo7/jo6O+46Ojv+Ojo4/jo6OAI6OjgSOjo4Ejo6OA46OjgGOjo4Ajo6OAI2NjQCNjY0Hjo6ONI6O
+        jtCOjo7/jo6O/46OjvSOjo4jjo6OAI6OjgKOjo4Ajo6OAI2NjQAAAAAAAAAAAI6OjgCOjo4Ajo6OAI6O
+        jgOOjo4Ajo6ONo6Ojv+Ojo79jo6O/46OjseOjo4njo6OApCQkACNjY0Ajo6OAY6OjhSOjo5ajo6Oqo6O
+        juOOjo7+jo6O/o6OjvuOjo7/jo6OpI6OjgCOjo4Ej4+PAI6OjgAAAAAAAAAAAAAAAAAAAAAAAAAAAI+P
+        jwCOjo4Ajo6OAI6OjgKOjo4Ajo6OvI6Ojv+Ojo78jo6O/46OjvyOjo7Wjo6Oko6Ojj2NjY0Ejo6O7o6O
+        jv+Ojo7/jo6O/46Ojv2Ojo79jo6O/I6Ojv+Ojo5gjo6OAI6OjgSOjo4Ajo6OAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAI6OjgCOjo4Ajo6OBI6OjgCOjo57jo6O/46OjvuOjo79jo6O/o6Ojv+Ojo7/jo6O/46O
+        jtCOjo7/jo6O/I6OjvuOjo79jo6O/46Ojv+Ojo79jo6O/46OjkCOjo4Ajo6OA46OjgAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAI6OjgCOjo4Ejo6OAI6OjlmOjo7/jo6O/I6Ojv+Ojo7/jo6O/Y6O
+        jvqOjo7/jo6O946Ojv+Ojo79jo6O+46Ojv2Ojo7/jo6O/46Ojv2Ojo7/jo6OPo6OjgCOjo4Djo6OAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAjo6OAI6OjgSOjo4Ajo6OWI6Ojv+Ojo78jo6O/46O
+        jv+Ojo79jo6O+o6Ojv6Ojo73jo6O3I6Ojv+Ojo7/jo6O/46Ojv6Ojo79jo6O/I6Ojv+Ojo5djo6OAI6O
+        jgSOjo4Ajo6OAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAI2NjQCOjo4Ajo6OBI6OjgCOjo54jo6O/46O
+        jvuOjo79jo6O/o6Ojv+Ojo7/jo6O/46OjuKNjY0Hjo6ORI6OjpmOjo7cjo6O/Y6Ojv+Ojo77jo6O/46O
+        jp2Ojo4Ajo6OBI6OjgCOjo4AAAAAAAAAAAAAAAAAAAAAAAAAAACQkJAAjo6OAI2NjQCOjo4Djo6OAI6O
+        jreOjo7/jo6O+46Ojv+Ojo78jo6O0o6Ojo2Ojo5Cjo6ODY+PjwGOjo4Ajo6OAI6OjgSOjo4wjo6O0Y6O
+        jv+Ojo7/jo6O7o6OjhyOjo4Ajo6OAo6OjgCOjo4AjY2NAAAAAAAAAAAAjo6OAI6OjgCOjo4Ajo6OA46O
+        jgCOjo4wjo6O/I6Ojv6Ojo7/jo6Oyo6OjimNjY0BkJCQAI6OjgCOjo4Ajo6OAY6OjgOOjo4Ejo6OBI6O
+        jgCOjo5Jjo6O/46OjvqOjo7/jo6OoI6OjgCOjo4Fjo6OAo6OjgCOjo4Ajo6OAI6OjgCOjo4Ajo6OAI6O
+        jgOOjo4Dj4+PAI6OjriOjo7/jo6O+46Ojv+Ojo4+jo6OAI6OjgSOjo4Ejo6OA46OjgGOjo4Ajo6OAI+P
+        jwCOjo4Ejo6OAI6OjkeOjo7/jo6O/Y6OjvyOjo7/jo6OfY6OjgCOjo4Cjo6OBI6OjgSOjo4Djo6OA46O
+        jgSOjo4Dj4+PAY+PjwCOjo6Ujo6O/46OjvyOjo7+jo6O/46Ojj2Ojo4Ajo6OA4+PjwCOjo4Ajo6OAAAA
+        AACOjo4Ajo6OAI6OjgGPj48Ajo6Ovo6Ojv+Ojo78jo6O/46OjvyOjo7/jo6OpI6OjheOjo4Ajo6OAY2N
+        jQCOjo4Ajo6OAY6OjgCOjo4gjo6Oto6Ojv+Ojo78jo6O/46OjvyOjo7/jo6OsY6OjgCOjo4Cjo6OAI6O
+        jgAAAAAAjo6OAI6OjgCOjo4Djo6OAI6Ojl+Ojo7/jo6O/I6Ojv+Ojo7/jo6O/46OjvyOjo7/jo6O8I6O
+        jqCOjo5djo6OQI6OjkKOjo5ijo6OqY6OjvaOjo7/jo6O/I6Ojv+Ojo7/jo6O/46Ojv2Ojo7/jo6OS46O
+        jgCOjo4Djo6OAI+PjwAAAAAAjo6OAY2NjQCNjY0Hjo6O1o6Ojv+Ojo79jo6O/46Ojv+Ojo78jo6O/Y6O
+        jvqOjo79jo6O/46Ojv+Ojo7/jo6O/46Ojv+Ojo7/jo6O/I6OjvqOjo79jo6O/I6Ojv+Ojo7/jo6O/I6O
+        jv+Ojo7Bj4+PAI+PjwGOjo4AAAAAAI6OjgCOjo4Ejo6OAI6OjmaOjo7/jo6O+o6Ojv+Ojo78jo6O/Y6O
+        jv+Ojo7/jo6O/46Ojv6Ojo77jo6O+46Ojv2Ojo79jo6O+46OjvuOjo7+jo6O/46Ojv+Ojo7/jo6O/I6O
+        jv2Ojo7/jo6O+46Ojv+Ojo5Ljo6OAI6OjgOPj48Ajo6OAI6OjgKOjo4Ajo6OOI6Oju6Ojo7/jo6O+46O
+        jv6Ojo7/jo6OuY6Ojj6Ojo4+jo6OzY6Ojv+Ojo79jo6O/46Ojv+Ojo79jo6O/46Ojs6Ojo5Ajo6OP46O
+        jr2Ojo7/jo6O/o6OjvuOjo7/jo6O8I6OjjaOjo4Ajo6OAo+PjwAAAAAAjo6OAI6OjgKOjo4Ajo6ONo6O
+        ju2Ojo7/jo6Ox46OjkmOjo4Ajo6OA46OjgCOjo4zjo6O/46Ojv+Ojo7/jo6O/o6Ojv+Ojo7/jo6OMo6O
+        jgCOjo4Djo6OAI6OjleOjo7Zjo6O/46Oju2Ojo43jo6OAI6OjgKNjY0AAAAAAI6OjgCOjo4Ajo6OAI6O
+        jgOOjo4Ajo6ONo6OjkqQkJAAjIyMAI6OjgKOjo4Ejo6OA4yMjAKOjo7Rjo6O/46Ojv2Ojo79jo6O/46O
+        jsqRkZEAjo6OBI6OjgSOjo4Djo6OAI6OjgWOjo5ljo6OO46OjgCOjo4Djo6OAI6OjgCPj48AAAAAAI6O
+        jgCOjo4Ajo6OAI6OjgKOjo4Bjo6OAI6OjgKOjo4Djo6OAI+PjwCOjo4Ejo6OAI6Ojo+Ojo7/jo6O+46O
+        jvuOjo7/jo6Ofo6OjgCOjo4Ejo6OAI6OjgCOjo4Djo6OAY6OjgCOjo4Bjo6OAo6OjgCOjo4Ajo6OAAAA
+        AAAAAAAAAAAAAI6OjgCOjo4Ajo6OAI6OjgKOjo4DjY2NAI2NjQCOjo4Ajo6OAI6OjgOOjo4Ajo6OR46O
+        jv+Ojo78jo6O/46Ojv+Ojo4xjo6OAI6OjgKOjo4Ajo6OAI6OjgCOjo4Bjo6OBI6OjgKOjo4Ajo6OAI6O
+        jgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACOjo4Ajo6OAY6O
+        jgCOjo4Sjo6O646Ojv+Ojo7/jo6O0o2NjQGNjY0Ajo6OAY6OjgAAAAAAjY2NAI2NjQCNjY0AjY2NAI2N
+        jQCNjY0AAAAAAAAAAAAAAAAA/+gT/+iIERfSKBBLqIAAlZAQCgmgAAAFoAAABZAAAAWQAAAJiAQgEUgQ
+        EBUIJGAQICvUAABX4gAAT/IAAE/yAABP8gAAT/IAAFfiACAr1AAIJCQQKBAIFYgEIBGQAAAJoAAACaAA
+        AAWgAAAFkFAICamAERXSCBRL6IgRF//oF/8=
+</value>
+  </data>
   <metadata name="FolderBrowserDialogPathXml.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>184, 17</value>
   </metadata>

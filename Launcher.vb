@@ -95,10 +95,12 @@ Public Class Launcher
     End Sub
 
     Private Sub SettingsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItemSettings.Click
+        Me.Hide()
         FormSettings.Show()
     End Sub
 
     Private Sub BtnStats_Click(sender As Object, e As EventArgs) Handles BtnStats.Click
+        Me.Hide()
         Statistics.Show()
     End Sub
 

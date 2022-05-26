@@ -85,10 +85,12 @@
 
         Launcher.Trace("Settings have been updated")
         ValidatedChange = True
+        Launcher.Show()
         Me.Close()
     End Sub
 
     Private Sub ButtonCancel_Click(sender As Object, e As EventArgs) Handles ButtonCancel.Click
+        Launcher.Show()
         Me.Close()
     End Sub
 
@@ -102,7 +104,7 @@
         TextBoxPathXml.Text = FolderBrowserDialogPathXml.SelectedPath
     End Sub
 
-    Private Sub Launcher_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
+    Private Sub FormSettings_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
         If ValidatedChange Then
             Return
         End If
