@@ -123,14 +123,14 @@ Partial Class Launcher
         'ToolStripMenuItemTrace
         '
         Me.ToolStripMenuItemTrace.Name = "ToolStripMenuItemTrace"
-        Me.ToolStripMenuItemTrace.Size = New System.Drawing.Size(116, 22)
+        Me.ToolStripMenuItemTrace.Size = New System.Drawing.Size(180, 22)
         Me.ToolStripMenuItemTrace.Text = "Trace"
         '
         'ToolStripMenuItemSettings
         '
         Me.ToolStripMenuItemSettings.Name = "ToolStripMenuItemSettings"
-        Me.ToolStripMenuItemSettings.Size = New System.Drawing.Size(116, 22)
-        Me.ToolStripMenuItemSettings.Text = "Settings"
+        Me.ToolStripMenuItemSettings.Size = New System.Drawing.Size(180, 22)
+        Me.ToolStripMenuItemSettings.Text = "Paramètres"
         '
         'ErrorProviderLauncher
         '

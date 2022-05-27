@@ -9,12 +9,12 @@
             GameLauncher.SetThemeWhite(Me)
         End If
         If AppSettings.Darkmode Then
-            ComboBoxTheme.Text = "Dark"
+            ComboBoxTheme.Text = "Sombre"
         Else
-            ComboBoxTheme.Text = "White"
+            ComboBoxTheme.Text = "Clair"
         End If
-        ComboBoxTheme.Items.Add("Dark")
-        ComboBoxTheme.Items.Add("White")
+        ComboBoxTheme.Items.Add("Sombre")
+        ComboBoxTheme.Items.Add("Clair")
         TextBoxPathXml.Text = AppSettings.StoragePathXMLFile
         TextBoxColumnsCount.Text = AppSettings.ColumnsCount
         TextBoxLinesCount.Text = AppSettings.LinesCount
@@ -71,7 +71,7 @@
         TraceFile("MinesCount setting set to : " & MinesCount)
         AppSettings.GameTime = Countdown
         TraceFile("GameTime setting set to : " & Countdown)
-        If ComboBoxTheme.Text = "Dark" Then
+        If ComboBoxTheme.Text = "Sombre" Then
             AppSettings.Darkmode = True
             GameLauncher.SetThemeDark(Launcher)
         Else
@@ -106,10 +106,13 @@
 
     Private Sub FormSettings_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
         If ValidatedChange Then
+            Launcher.Show()
             Return
         End If
         If MsgBox("Etes-vous sûr de ne pas enregistrer les modifications ?", MsgBoxStyle.YesNo, "Exit Settings") = MsgBoxResult.No Then
             e.Cancel = True
+        Else
+            Launcher.Show()
         End If
     End Sub
 
